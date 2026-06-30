@@ -322,14 +322,22 @@ const PRODUCTS = [
 ];
 
 const TECHNOS = [
-  { title: 'Homologation CE', desc: 'Norme EN 13594:2015. Une protection certifiée, testée à l\'abrasion et à l\'impact.',
-    icon: '<path d="M12 3l7 3v6c0 5-3 8-7 9-4-1-7-4-7-9V6z"/><path d="M9 12l2 2 4-4"/>' },
-  { title: 'Coque réactive', desc: 'Coques carbone et TPR durcissant sous impact, souples au repos, fermes dans le mur.',
-    icon: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>' },
-  { title: 'Airprene & Cuir', desc: 'Respirabilité et préhension. Cuir sélectionné, mesh aéré, usage longue durée.',
-    icon: '<path d="M4 14c4-6 12-6 16 0"/><path d="M4 14c4 6 12 6 16 0"/><circle cx="12" cy="14" r="2"/>' },
-  { title: 'Tactile & connecté', desc: 'Index et pouce tactiles. Reste connecté sans jamais retirer tes gants.',
-    icon: '<rect x="7" y="3" width="10" height="18" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/>' },
+  { title: 'Homologation CE', tag: 'Norme EN 13594:2015',
+    desc: 'Chaque gant moto est certifié et testé en laboratoire : résistance à l\'abrasion, à la déchirure et à l\'impact. La protection n\'est pas une option, c\'est la base.',
+    icon: '<path d="M12 3l7 3v6c0 5-3 8-7 9-4-1-7-4-7-9V6z"/><path d="M9 12l2 2 4-4"/>',
+    img: IMG + '2025/09/FIVE-MOTO-RACING-PERFORMANCE-rfx2-evo-black-white-focus01.jpg' },
+  { title: 'Coque réactive', tag: 'Carbone & TPU',
+    desc: 'Coques de protection métacarpiennes et slider de paume en carbone et TPU : souples au repos, fermes à l\'impact. L\'énergie d\'une chute est absorbée, pas transmise.',
+    icon: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>',
+    img: IMG + '2025/09/FIVE-MOTO-RACING-PERFORMANCE-rfx2-evo-black-white-focus02.jpg' },
+  { title: 'Cuir & préhension', tag: 'Cuir de chèvre · Hi-Res Grip™',
+    desc: 'Cuir sélectionné, mesh aéré et impression Hi-Res Grip™ sur la paume pour une adhérence parfaite aux poignées. Du toucher, du grip, sur la durée.',
+    icon: '<path d="M4 14c4-6 12-6 16 0"/><path d="M4 14c4 6 12 6 16 0"/><circle cx="12" cy="14" r="2"/>',
+    img: IMG + '2025/09/FIVE-MOTO-RACING-PERFORMANCE-rfx2-evo-black-white-focus03.jpg' },
+  { title: 'Tactile & connecté', tag: 'Touch Screen™',
+    desc: 'Index et pouce compatibles écrans tactiles : GPS, intercom, smartphone — tu restes connecté sans jamais retirer tes gants.',
+    icon: '<rect x="7" y="3" width="10" height="18" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/>',
+    img: IMG + '2025/09/FIVE-MOTO-RACING-PERFORMANCE-rfx2-evo-black-white-focus04.jpg' },
 ];
 
 const MARQUEE_ITEMS = [

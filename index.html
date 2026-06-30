@@ -141,15 +141,26 @@
     <!-- ============ UNIVERS MOTO ============ -->
     <section class="categories" id="categories">
       <div class="container">
-        <header class="section-head section-head--row reveal">
-          <div>
-            <p class="overline overline--dark">L'univers moto</p>
-            <h2 class="section-title">Roule par discipline</h2>
-          </div>
-          <p class="section-desc section-desc--right">Du circuit au tout-terrain, chaque pratique a ses gants. Trouve les tiens.</p>
+        <header class="section-head reveal">
+          <p class="overline overline--dark">Gants moto par usage</p>
+          <h2 class="section-title">Trouve ta discipline</h2>
+          <p class="section-desc">Du circuit au tout-terrain, de la ville au grand froid : dix univers, une seule exigence — te protéger sans jamais te freiner.</p>
         </header>
-        <div class="category-grid" id="category-grid">
+      </div>
+      <div class="cat-carousel">
+        <div class="cat-track" id="category-grid">
           <!-- filled by JS -->
+        </div>
+      </div>
+      <div class="container cat-controls">
+        <div class="cat-dots" id="cat-dots" role="tablist" aria-label="Positions du carrousel"></div>
+        <div class="cat-arrows">
+          <button class="cat-arrow" id="cat-prev" aria-label="Précédent">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button class="cat-arrow" id="cat-next" aria-label="Suivant">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
         </div>
       </div>
     </section>
@@ -160,11 +171,12 @@
         <header class="section-head reveal">
           <p class="overline">Ce qui se cache dans le gant</p>
           <h2 class="section-title section-title--light">La technologie Five</h2>
-          <p class="section-desc section-desc--light">Quatre piliers qui font la différence entre un gant et une vraie protection.</p>
+          <p class="section-desc section-desc--light">Quatre piliers qui font la différence entre un simple gant et une vraie protection.</p>
         </header>
 
-        <div class="techno__grid" id="techno-grid">
-          <!-- filled by JS -->
+        <div class="tech-explorer reveal">
+          <div class="tech-list" id="tech-list" role="tablist" aria-label="Piliers technologiques"><!-- JS --></div>
+          <div class="tech-visual" id="tech-visual"><!-- JS --></div>
         </div>
       </div>
     </section>

@@ -143,29 +143,108 @@
     });
   });
 
-  /* ---------- 7b. Catégories moto (univers) ---------- */
+  /* ---------- 7b. Catégories moto — carrousel infini à contrôles ---------- */
   const catGrid = $('#category-grid');
   if (catGrid && typeof CATEGORIES !== 'undefined') {
-    catGrid.innerHTML = CATEGORIES.map(c => `
-      <a class="category-card reveal" href="#nouveautes" aria-label="${c.name}">
+    const N = CATEGORIES.length;
+    const cardHTML = (c, i) => `
+      <a class="category-card" href="#nouveautes" aria-label="${c.name}">
         <img src="${c.img}" alt="FIVE — ${c.name}" loading="lazy" referrerpolicy="no-referrer" />
+        <span class="category-card__num">${String(i + 1).padStart(2, '0')}</span>
         <div class="category-card__body">
           <span class="category-card__tag">${c.tag}</span>
           <h3>${c.name}</h3>
           <span class="category-card__go">Découvrir <span class="arrow">→</span></span>
         </div>
-      </a>`).join('');
+      </a>`;
+    // 3 copies → boucle infinie (on reste toujours dans la copie du milieu)
+    let html = '';
+    for (let r = 0; r < 3; r++) html += CATEGORIES.map(cardHTML).join('');
+    catGrid.innerHTML = html;
+
+    const cards = $$('.category-card', catGrid);
+    const prev = $('#cat-prev'), next = $('#cat-next'), dotsWrap = $('#cat-dots');
+    const GAP = 18;
+    const stepW = () => cards[0].getBoundingClientRect().width + GAP; // largeur d'une carte
+    const setW  = () => stepW() * N;                                  // largeur d'une copie
+
+    dotsWrap.innerHTML = CATEGORIES.map((c, i) =>
+      `<button class="cat-dot" data-i="${i}" role="tab" aria-label="Aller à ${c.name}"></button>`).join('');
+    const dots = $$('.cat-dot', dotsWrap);
+
+    const rel = () => { const s = setW(); return ((catGrid.scrollLeft % s) + s) % s; };
+    function syncDots() {
+      const idx = Math.round(rel() / stepW()) % N;
+      dots.forEach((d, k) => d.classList.toggle('is-active', k === idx));
+    }
+    // ré-ancrage instantané dans la copie du milieu (saut invisible : copies identiques)
+    function recenter() {
+      const s = setW();
+      const target = s + rel();
+      if (Math.abs(target - catGrid.scrollLeft) > 1) {
+        const prevBehavior = catGrid.style.scrollBehavior;
+        catGrid.style.scrollBehavior = 'auto';
+        catGrid.scrollLeft = target;
+        catGrid.style.scrollBehavior = prevBehavior;
+      }
+    }
+
+    prev.addEventListener('click', () => catGrid.scrollBy({ left: -stepW(), behavior: 'smooth' }));
+    next.addEventListener('click', () => catGrid.scrollBy({ left:  stepW(), behavior: 'smooth' }));
+    dots.forEach(d => d.addEventListener('click', () => {
+      const delta = ((+d.dataset.i) - (Math.round(rel() / stepW()) % N));
+      catGrid.scrollBy({ left: delta * stepW(), behavior: 'smooth' });
+    }));
+
+    let raf, settle;
+    catGrid.addEventListener('scroll', () => {
+      cancelAnimationFrame(raf); raf = requestAnimationFrame(syncDots);
+      clearTimeout(settle); settle = setTimeout(recenter, 150);
+    }, { passive: true });
+    window.addEventListener('resize', () => { recenter(); syncDots(); });
+
+    // position de départ = début de la copie du milieu
+    requestAnimationFrame(() => { catGrid.scrollLeft = setW(); syncDots(); });
   }
 
-  /* ---------- 8. Technologies ---------- */
-  const techGrid = $('#techno-grid');
-  if (techGrid) {
-    techGrid.innerHTML = TECHNOS.map(t => `
-      <div class="tech-item reveal">
-        <div class="tech-item__icon"><svg viewBox="0 0 24 24">${t.icon}</svg></div>
-        <h3>${t.title}</h3>
-        <p>${t.desc}</p>
-      </div>`).join('');
+  /* ---------- 8. Technologies — explorateur interactif ---------- */
+  const techList = $('#tech-list'), techVisual = $('#tech-visual');
+  if (techList && techVisual) {
+    const pad = n => String(n).padStart(2, '0');
+    techList.innerHTML = TECHNOS.map((t, i) => `
+      <button class="tech-item${i === 0 ? ' is-active' : ''}" data-i="${i}" role="tab" aria-selected="${i === 0}">
+        <span class="tech-item__num">${pad(i + 1)}</span>
+        <span class="tech-item__head">
+          <span class="tech-item__icon"><svg viewBox="0 0 24 24">${t.icon}</svg></span>
+          <span class="tech-item__title">
+            <h3>${t.title}</h3>
+            <span class="tech-item__tag">${t.tag}</span>
+          </span>
+        </span>
+      </button>`).join('');
+
+    techVisual.innerHTML = TECHNOS.map((t, i) => `
+      <figure class="tech-shot${i === 0 ? ' is-active' : ''}" data-i="${i}">
+        <img src="${t.img}" alt="${t.title}" loading="lazy" referrerpolicy="no-referrer" />
+      </figure>`).join('') +
+      `<div class="tech-visual__caption" id="tech-caption"></div>`;
+
+    const items = $$('.tech-item', techList);
+    const shots = $$('.tech-shot', techVisual);
+    const caption = $('#tech-caption');
+    const setActive = i => {
+      items.forEach((el, k) => { el.classList.toggle('is-active', k === i); el.setAttribute('aria-selected', k === i); });
+      shots.forEach((el, k) => el.classList.toggle('is-active', k === i));
+      caption.classList.remove('is-in');
+      caption.innerHTML = `<span class="cap-num">${pad(i + 1)} / ${pad(TECHNOS.length)}</span><p>${TECHNOS[i].desc}</p>`;
+      requestAnimationFrame(() => caption.classList.add('is-in'));
+    };
+    items.forEach((el, i) => {
+      el.addEventListener('mouseenter', () => setActive(i));
+      el.addEventListener('click', () => setActive(i));
+      el.addEventListener('focus', () => setActive(i));
+    });
+    setActive(0);
   }
 
   /* ---------- 8b. Cartes terrain : split interactif + vidéo ---------- */
