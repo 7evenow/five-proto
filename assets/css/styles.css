@@ -129,9 +129,13 @@ input { font-family: inherit; }
 .header__inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 
 .logo {
-  font-family: var(--font-display);
-  font-weight: 900; font-size: 1.5rem; letter-spacing: .06em;
-  color: var(--white);
+  display: flex;
+  align-items: center;
+}
+.logo img {
+  display: block;
+  height: 22px;
+  width: auto;
 }
 
 .nav__list { display: flex; gap: clamp(14px, 2vw, 30px); }
