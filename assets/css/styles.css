@@ -145,11 +145,12 @@ input { font-family: inherit; }
   transition: opacity .2s;
 }
 .nav__list a::after {
-  content: ""; position: absolute; left: 0; bottom: 0; width: 0; height: 2px; background: var(--red);
-  transition: width .3s var(--ease);
+  content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 2px; background: var(--red);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .3s var(--ease);
 }
 .nav__list a:hover { opacity: 1; }
-.nav__list a:hover::after { width: 100%; }
+.nav__list a:hover::after { transform: scaleX(1); }
 
 .header__actions { display: flex; align-items: center; gap: 6px; }
 .icon-btn {
@@ -1015,9 +1016,9 @@ input { font-family: inherit; }
   display: inline-flex; align-items: center; gap: .5em; padding: 5px 0; width: 100%;
   font-size: .9rem; color: rgba(255,255,255,.66); transition: color .2s var(--ease), transform .2s var(--ease);
 }
-.mega__list a::before { content: ""; width: 0; height: 1px; background: var(--red); transition: width .25s var(--ease); }
+.mega__list a::before { content: ""; flex-shrink: 0; width: 12px; height: 1px; background: var(--red); transform: scaleX(0); transform-origin: left; transition: transform .25s var(--ease); }
 .mega__list a:hover { color: #fff; }
-.mega__list a:hover::before { width: 12px; }
+.mega__list a:hover::before { transform: scaleX(1); }
 
 /* preview dynamique */
 .mega__preview {
