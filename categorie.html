@@ -3,15 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FIVE — Fiche produit</title>
-
+  <title>FIVE — Catégorie</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
-<body class="page-product">
+<body class="page-category">
   <!-- ============ HEADER ============ -->
   <header class="site-header is-solid" id="header">
     <div class="container header__inner">
@@ -44,118 +42,31 @@
     </div>
   </header>
 
-  <main id="product-root">
-    <!-- ============ ZONE D'ACHAT (#EEECED) ============ -->
-    <div class="buy-zone">
-    <!-- ============ BREADCRUMB ============ -->
-    <nav class="breadcrumb container" aria-label="Fil d'ariane">
-      <a href="index.html">Accueil</a>
-      <span>/</span>
-      <a href="index.html#nouveautes" id="bc-cat">Catégorie</a>
-      <span>/</span>
-      <span id="bc-name" aria-current="page">Produit</span>
-    </nav>
-
-    <!-- ============ PRODUIT ============ -->
-    <section class="product container">
-      <!-- Galerie -->
-      <div class="gallery">
-        <figure class="gallery__cell gallery__cell--main">
-          <span class="badge" id="p-badge" hidden></span>
-          <img id="main-img" src="" alt="" referrerpolicy="no-referrer" />
-        </figure>
-        <div class="gallery__extra" id="gallery-extra"></div>
-      </div>
-
-      <!-- Infos -->
-      <div class="product__info">
-        <p class="overline overline--dark" id="p-cat">Catégorie</p>
-        <h1 class="product__name" id="p-name">Produit</h1>
-
-        <div class="product__rating">
-          <span class="stars" aria-hidden="true">★★★★★</span>
-          <span>4.8 · 124 avis</span>
-        </div>
-
-        <p class="product__price" id="p-price">—</p>
-
-        <div class="product__tags" id="p-tags"></div>
-
-        <div class="product__opt">
-          <p class="opt-label">Coloris : <strong id="p-color-name">—</strong></p>
-          <div class="swatches swatches--lg" id="p-swatches"></div>
-        </div>
-
-        <div class="product__opt">
-          <p class="opt-label">Taille <a href="#" class="opt-link">Guide des tailles</a></p>
-          <div class="sizes" id="p-sizes"></div>
-        </div>
-
-        <div class="product__actions">
-          <div class="qty" aria-label="Quantité">
-            <button type="button" data-q="-1" aria-label="Diminuer">−</button>
-            <span id="qty">1</span>
-            <button type="button" data-q="1" aria-label="Augmenter">+</button>
-          </div>
-          <button class="btn btn--red" id="add-cart">Ajouter au panier</button>
-          <button class="wishlist wishlist--lg" id="p-wish" aria-label="Ajouter aux favoris" aria-pressed="false">
-            <svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-9.5-9C1 9 2.5 5 6 5c2 0 3.2 1.2 4 2.5C10.8 6.2 12 5 14 5c3.5 0 5 4 3.5 7-2.5 4.5-9.5 9-9.5 9z"/></svg>
-          </button>
-        </div>
-
-        <ul class="product__perks">
-          <li>Livraison offerte dès 80€</li>
-          <li>Retours gratuits sous 30 jours</li>
-          <li>Paiement sécurisé 3D Secure</li>
-          <li>Expédié sous 24h</li>
-        </ul>
-
-        <div class="product__desc">
-          <h2>Description</h2>
-          <p id="p-desc"></p>
-        </div>
-      </div>
-    </section>
-    </div><!-- /.buy-zone -->
-
-    <!-- ============ DÉTAILS / CARACTÉRISTIQUES ============ -->
-    <section class="pdetails" id="pdetails">
-      <div class="container">
-        <header class="section-head">
-          <p class="overline overline--dark">Dans le détail</p>
-          <h2 class="section-title">Caractéristiques</h2>
-        </header>
-        <div class="specs-row" id="p-specs"></div>
-        <ul class="features" id="p-features"></ul>
+  <main>
+    <!-- ============ HERO CATÉGORIE ============ -->
+    <section class="cat-hero" id="cat-hero">
+      <img class="cat-hero__bg" id="cat-hero-img" src="" alt="" referrerpolicy="no-referrer" />
+      <div class="cat-hero__overlay" aria-hidden="true"></div>
+      <div class="container cat-hero__inner">
+        <nav class="breadcrumb breadcrumb--light" aria-label="Fil d'ariane">
+          <a href="index.html">Accueil</a><span>/</span>
+          <a href="index.html#categories">Gants moto</a><span>/</span>
+          <span id="bc-cat" aria-current="page">Catégorie</span>
+        </nav>
+        <p class="overline" id="cat-tag">Gants moto</p>
+        <h1 class="cat-hero__title" id="cat-name">Catégorie</h1>
+        <p class="cat-hero__desc" id="cat-desc"></p>
       </div>
     </section>
 
-    <!-- ============ PHOTOS DE ZOOM / LIFESTYLE ============ -->
-    <section class="media" id="media">
-      <div class="container">
-        <div class="media__grid" id="media-grid"></div>
-      </div>
-    </section>
-
-    <!-- ============ TECHNO ============ -->
-    <section class="techno">
-      <div class="container">
-        <header class="section-head reveal">
-          <p class="overline">Ce qui se cache dans le gant</p>
-          <h2 class="section-title section-title--light">La technologie Five</h2>
-        </header>
-        <div class="techno__grid" id="techno-grid"></div>
-      </div>
-    </section>
-
-    <!-- ============ RELATED ============ -->
-    <section class="related">
-      <div class="container">
-        <header class="section-head reveal">
-          <p class="overline overline--dark">Dans le même esprit</p>
-          <h2 class="section-title">Tu aimeras aussi</h2>
-        </header>
-        <div class="product-grid" id="related"></div>
+    <!-- ============ LISTE PRODUITS ============ -->
+    <section class="cat-list">
+      <div class="container cat-layout">
+        <aside class="cat-sidebar" id="cat-sidebar" aria-label="Filtres et gammes"><!-- JS --></aside>
+        <div class="cat-main">
+          <div class="cat-chips" id="cat-chips"><!-- JS --></div>
+          <div class="cat-groups" id="cat-groups"><!-- JS --></div>
+        </div>
       </div>
     </section>
   </main>
@@ -197,6 +108,6 @@
   <script src="assets/js/data.js"></script>
   <script src="assets/js/cart.js"></script>
   <script src="assets/js/nav.js"></script>
-  <script src="assets/js/produit.js"></script>
+  <script src="assets/js/categorie.js"></script>
 </body>
 </html>

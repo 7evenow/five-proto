@@ -350,14 +350,14 @@ const MARQUEE_ITEMS = [
 
 /* Catégories moto (univers) — images lifestyle depuis five-gloves.com */
 const CATEGORIES = [
-  { name: 'Racing',          tag: 'Piste & circuit',   img: IMG + '2025/09/CARRASCO-ACTION.jpg' },
-  { name: 'Street',          tag: 'Roadster & sport',  img: IMG + '2026/02/FIVE-MOTO-STREET-RSX-RED-ACTION-23.jpg' },
-  { name: 'Urban',           tag: 'Ville & quotidien', img: IMG + '2025/09/FIVE-MOTO-URBAN-spark-khaki-action01.jpg' },
-  { name: 'Custom',          tag: 'Cruiser & vintage', img: IMG + '2025/09/FIVE-MOTO-CUSTOM-montana-waxed-brown-action04.jpg' },
-  { name: 'Trail Adventure', tag: 'Aventure & GT',     img: IMG + '2025/09/FIVE-MOTO-TRAIL-ADVENTURE-tfx1-gtx-grey-grey-red-action01.jpg' },
-  { name: 'Touring',         tag: 'Grands trajets',    img: IMG + '2025/09/FIVE-MOTO-TOURING-gt1-evo-gtx-black-action02.jpg' },
-  { name: 'Winter',          tag: 'Froid & pluie',     img: IMG + '2025/09/FIVE-MOTO-WINTER_GTX-wfx-skin-evo-gtx-brown-action02.jpg' },
-  { name: 'Heat Technology', tag: 'Gants chauffants',  img: IMG + '2025/09/FIVE-MOTO-HEAT-TECHNOLOGY-hg-prime-evo-gtx-black-action02.jpg' },
-  { name: 'Woman',           tag: 'Coupe femme',       img: IMG + '2025/09/FIVE-MOTO-WOMAN-RACING-rfx-sport-evo-woman-red-action01.jpg' },
-  { name: 'Off-Road',        tag: 'Cross & enduro',    img: IMG + '2025/09/FIVE-MOTO-OFF-ROAD-MX-mxf-race-red-action03.jpg' },
+  { slug: 'racing',          name: 'Racing',          tag: 'Piste & circuit',   desc: 'Le plus haut niveau de protection pour la piste : coques carbone, cuir pleine fleur et construction pensée pour la vitesse.', img: IMG + '2025/09/CARRASCO-ACTION.jpg' },
+  { slug: 'street',          name: 'Street',          tag: 'Roadster & sport',  desc: 'Des gants sport-touring polyvalents, protecteurs et confortables pour avaler la route au quotidien.', img: IMG + '2026/02/FIVE-MOTO-STREET-RSX-RED-ACTION-23.jpg' },
+  { slug: 'urban',           name: 'Urban',           tag: 'Ville & quotidien', desc: 'Compacts et discrets, taillés pour la ville et les trajets de tous les jours sans sacrifier la sécurité.', img: IMG + '2025/09/FIVE-MOTO-URBAN-spark-khaki-action01.jpg' },
+  { slug: 'custom',          name: 'Custom',          tag: 'Cruiser & vintage', desc: 'Cuir sélectionné et style vintage pour rouler en custom avec allure et caractère.', img: IMG + '2025/09/FIVE-MOTO-CUSTOM-montana-waxed-brown-action04.jpg' },
+  { slug: 'trail-adventure', name: 'Trail Adventure', tag: 'Aventure & GT',     desc: 'Robustes et respirants, conçus pour le maxi-trail et les longues échappées, de l\'asphalte au chemin.', img: IMG + '2025/09/FIVE-MOTO-TRAIL-ADVENTURE-tfx1-gtx-grey-grey-red-action01.jpg' },
+  { slug: 'touring',         name: 'Touring',         tag: 'Grands trajets',    desc: 'Le confort longue distance : membranes étanches, préhension et protection pour enchaîner les kilomètres.', img: IMG + '2025/09/FIVE-MOTO-TOURING-gt1-evo-gtx-black-action02.jpg' },
+  { slug: 'winter',          name: 'Winter',          tag: 'Froid & pluie',     desc: 'Chaleur et étanchéité face au froid et à la pluie, sans perdre en sensibilité.', img: IMG + '2025/09/FIVE-MOTO-WINTER_GTX-wfx-skin-evo-gtx-brown-action02.jpg' },
+  { slug: 'heat-technology', name: 'Heat Technology', tag: 'Gants chauffants',  desc: 'La technologie chauffante FIVE pour garder les mains au chaud, même par grand froid.', img: IMG + '2025/09/FIVE-MOTO-HEAT-TECHNOLOGY-hg-prime-evo-gtx-black-action02.jpg' },
+  { slug: 'woman',           name: 'Woman',           tag: 'Coupe femme',       desc: 'Des coupes spécifiquement étudiées pour la main féminine, sans compromis sur la protection.', img: IMG + '2025/09/FIVE-MOTO-WOMAN-RACING-rfx-sport-evo-woman-red-action01.jpg' },
+  { slug: 'off-road',        name: 'Off-Road',        tag: 'Cross & enduro',    desc: 'Légèreté, grip et liberté de mouvement pour le cross, l\'enduro et le tout-terrain.', img: IMG + '2025/09/FIVE-MOTO-OFF-ROAD-MX-mxf-race-red-action03.jpg' },
 ];

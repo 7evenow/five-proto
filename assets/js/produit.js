@@ -31,14 +31,7 @@
     toastTimer = setTimeout(() => toastEl.classList.remove('is-visible'), 2600);
   }
 
-  /* ---------- Panier (partagé avec l'accueil) ---------- */
-  let cartItems = parseInt(localStorage.getItem('five_cart') || '0', 10);
-  const cartCount = $('#cart-count');
-  function renderCart() {
-    cartCount.textContent = cartItems;
-    cartCount.classList.toggle('is-visible', cartItems > 0);
-  }
-  renderCart();
+  /* ---------- Panier : géré par cart.js (window.FiveCart) ---------- */
 
   /* ---------- Sélection du produit ---------- */
   const params = new URLSearchParams(location.search);
@@ -166,18 +159,13 @@
       setTimeout(() => $('#p-sizes').classList.remove('shake'), 500);
       return;
     }
-    cartItems += qty;
-    localStorage.setItem('five_cart', cartItems);
-    renderCart();
-    cartCount.style.animation = 'none'; void cartCount.offsetWidth; cartCount.style.animation = '';
-    toast(`${product.name} (${currentVariant.name}, ${currentSize}) ×${qty} ajouté au panier`);
+    window.FiveCart.add({
+      id: product.id, name: product.name, price: product.price,
+      img: currentVariant.img, variant: currentVariant.name, size: currentSize, qty
+    });
   });
 
-  $$('[data-action]').forEach(b => b.addEventListener('click', () => {
-    const a = b.dataset.action;
-    if (a === 'search') toast('Recherche — à venir');
-    if (a === 'cart') toast(cartItems ? `${cartItems} article(s) dans le panier` : 'Ton panier est vide');
-  }));
+  $$('[data-action="search"]').forEach(b => b.addEventListener('click', () => toast('Recherche — à venir')));
 
   /* ---------- Technologies ---------- */
   $('#techno-grid').innerHTML = TECHNOS.map(t => `

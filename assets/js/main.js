@@ -35,23 +35,7 @@
     track.innerHTML = block + block; // dupliqué pour une boucle sans couture
   }
 
-  /* ---------- 4. Panier (persisté entre les pages) ---------- */
-  let cartItems = parseInt(localStorage.getItem('five_cart') || '0', 10);
-  const cartCount = $('#cart-count');
-  function renderCart() {
-    cartCount.textContent = cartItems;
-    cartCount.classList.toggle('is-visible', cartItems > 0);
-  }
-  renderCart();
-  function addToCart(name) {
-    cartItems++;
-    localStorage.setItem('five_cart', cartItems);
-    renderCart();
-    cartCount.style.animation = 'none';
-    void cartCount.offsetWidth;
-    cartCount.style.animation = '';
-    toast(`${name} ajouté au panier`);
-  }
+  /* ---------- 4. Panier : géré par cart.js (window.FiveCart) ---------- */
 
   /* ---------- 5. Toast ---------- */
   const toastEl = $('#toast');
@@ -97,7 +81,9 @@
         <div class="swatches">${swatches}</div>
         <div class="card__foot">
           ${price}
-          <button class="add-btn" aria-label="Ajouter ${p.name} au panier" data-name="${p.name}">+</button>
+          <button class="add-btn" aria-label="Ajouter ${p.name} au panier"
+            data-id="${p.id}" data-name="${p.name}" data-price="${p.price}"
+            data-img="${p.variants[0].img}" data-size="${p.cat === 'accessoire' ? 'Unique' : 'M'}">+</button>
         </div>
       </div>
     </article>`;
@@ -107,7 +93,17 @@
     // délégation : add-to-cart + wishlist
     grid.addEventListener('click', e => {
       const add = e.target.closest('.add-btn');
-      if (add) { addToCart(add.dataset.name); return; }
+      if (add) {
+        const cardEl = add.closest('.card');
+        const sw = cardEl.querySelector('.swatch.is-active') || cardEl.querySelector('.swatch');
+        window.FiveCart.add({
+          id: add.dataset.id, name: add.dataset.name, price: parseFloat(add.dataset.price),
+          img: sw ? sw.dataset.img : add.dataset.img,
+          variant: sw ? (sw.getAttribute('title') || '') : '',
+          size: add.dataset.size
+        });
+        return;
+      }
       const wish = e.target.closest('.wishlist');
       if (wish) {
         const on = wish.classList.toggle('is-active');
@@ -148,7 +144,7 @@
   if (catGrid && typeof CATEGORIES !== 'undefined') {
     const N = CATEGORIES.length;
     const cardHTML = (c, i) => `
-      <a class="category-card" href="#nouveautes" aria-label="${c.name}">
+      <a class="category-card" href="categorie.html?cat=${c.slug}" aria-label="${c.name}">
         <img src="${c.img}" alt="FIVE — ${c.name}" loading="lazy" referrerpolicy="no-referrer" />
         <span class="category-card__num">${String(i + 1).padStart(2, '0')}</span>
         <div class="category-card__body">
@@ -334,10 +330,6 @@
   }
 
   /* ---------- 12. Search / cart placeholders ---------- */
-  $$('[data-action]').forEach(b => b.addEventListener('click', () => {
-    const a = b.dataset.action;
-    if (a === 'search') toast('Recherche — à venir');
-    if (a === 'cart') toast(cartItems ? `${cartItems} article(s) dans le panier` : 'Ton panier est vide');
-  }));
+  $$('[data-action="search"]').forEach(b => b.addEventListener('click', () => toast('Recherche — à venir')));
 
 })();
