@@ -329,7 +329,85 @@
     });
   }
 
-  /* ---------- 12. Search / cart placeholders ---------- */
+  /* ---------- 12. Team Five — carrousel ---------- */
+  const teamTrack = $('#team-track');
+  if (teamTrack && typeof TEAM !== 'undefined') {
+    const mkCard = a => `
+      <article class="team-card" tabindex="0">
+        <img class="team-card__img" src="${a.imgPortrait}" alt="${a.name}" loading="lazy" referrerpolicy="no-referrer" />
+        <div class="team-card__content">
+          <span class="team-card__country">${a.country} · ${a.discipline}</span>
+          <span class="team-card__name">${a.name}</span>
+          <div class="team-card__reveal">
+            <ul class="team-card__achievements">
+              ${a.achievements.map(t => `<li>${t}</li>`).join('')}
+            </ul>
+            <div class="team-card__foot">
+              <a href="${a.gloveHref}" class="team-card__glove">
+                <span class="team-card__glove-lbl">Son gant</span>
+                <span class="team-card__glove-name">${a.glove} <span class="arrow">→</span></span>
+              </a>
+              <div class="team-card__socials">
+                <a href="${a.instagram}" aria-label="Instagram de ${a.name}">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+                </a>
+                <a href="${a.facebook}" aria-label="Facebook de ${a.name}">
+                  <svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8a1 1 0 0 1 1-1z"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>`;
+
+    const N = TEAM.length;
+    // 3 copies → boucle infinie (reste toujours dans la copie du milieu)
+    let html = '';
+    for (let r = 0; r < 3; r++) html += TEAM.map(mkCard).join('');
+    teamTrack.innerHTML = html;
+
+    const teamCards = $$('.team-card', teamTrack);
+    const teamPrev  = $('#team-prev');
+    const teamNext  = $('#team-next');
+    const teamCtr   = $('#team-counter');
+
+    const GAP = 18;
+    const cw   = () => teamCards[0].getBoundingClientRect().width + GAP;
+    const setW = () => cw() * N;
+
+    const rel = () => { const s = setW(); return ((teamTrack.scrollLeft % s) + s) % s; };
+
+    function syncCounter() {
+      const idx = Math.round(rel() / cw()) % N;
+      if (teamCtr) teamCtr.textContent = `${String(idx + 1).padStart(2, '0')} / ${String(N).padStart(2, '0')}`;
+    }
+
+    function recenter() {
+      const target = setW() + rel();
+      if (Math.abs(target - teamTrack.scrollLeft) > 1) {
+        const prev = teamTrack.style.scrollBehavior;
+        teamTrack.style.scrollBehavior = 'auto';
+        teamTrack.scrollLeft = target;
+        teamTrack.style.scrollBehavior = prev;
+      }
+    }
+
+    if (teamPrev) teamPrev.addEventListener('click', () => teamTrack.scrollBy({ left: -cw(), behavior: 'smooth' }));
+    if (teamNext) teamNext.addEventListener('click', () => teamTrack.scrollBy({ left:  cw(), behavior: 'smooth' }));
+
+    let tRaf, tSettle;
+    teamTrack.addEventListener('scroll', () => {
+      cancelAnimationFrame(tRaf); tRaf = requestAnimationFrame(syncCounter);
+      clearTimeout(tSettle);      tSettle = setTimeout(recenter, 150);
+    }, { passive: true });
+
+    window.addEventListener('resize', () => { recenter(); syncCounter(); });
+
+    // Départ sur la copie du milieu
+    requestAnimationFrame(() => { teamTrack.scrollLeft = setW(); syncCounter(); });
+  }
+
+  /* ---------- 13. Search / cart placeholders ---------- */
   $$('[data-action="search"]').forEach(b => b.addEventListener('click', () => toast('Recherche — à venir')));
 
 })();

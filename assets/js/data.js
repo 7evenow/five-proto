@@ -340,6 +340,95 @@ const TECHNOS = [
     img: IMG + '2025/09/FIVE-MOTO-RACING-PERFORMANCE-rfx2-evo-black-white-focus04.jpg' },
 ];
 
+/* ---- Team Five ---- */
+const CDN = 'https://five-gloves.com/wp-content/smush-webp/';
+const TEAM = [
+  {
+    name: 'Sylvain André',
+    discipline: 'BMX Racing',
+    country: 'FRA',
+    achievements: [
+      'Champion du Monde BMX 2019, 2022 & 2023',
+      'Médaillé olympique Tokyo & Paris',
+      '3× Champion d\'Europe BMX'
+    ],
+    imgAction:   CDN + '2025/09/ANDRE_ACTION-1024x512.jpg.webp',
+    imgPortrait: CDN + '2025/09/ANDRE_PORTRAIT-1024x512.jpg.webp',
+    glove: 'RFX Sport Evo', gloveHref: 'produit.html',
+    instagram: 'https://www.instagram.com/sylvainandrebmx/', facebook: '#'
+  },
+  {
+    name: 'Thibault Benistant',
+    discipline: 'Motocross MXGP',
+    country: 'FRA',
+    achievements: [
+      'Champion du Monde MX2 2022',
+      'Pilote Team Yamaha Factory MXGP',
+      'Multiple podiums GP 2023/24'
+    ],
+    imgAction:   CDN + '2026/03/BENISTANT-ACTION_2026-1024x512.jpg.webp',
+    imgPortrait: CDN + '2026/03/BENISTANT-PORTRAIT_2026-1024x512.jpg.webp',
+    glove: 'MXF Race', gloveHref: 'produit.html',
+    instagram: '#', facebook: '#'
+  },
+  {
+    name: 'Thibaut Daprela',
+    discipline: 'Downhill VTT',
+    country: 'FRA',
+    achievements: [
+      'Champion du Monde DH 2022',
+      'Vainqueur Coupe du Monde DH 2021',
+      'Val di Sole Champion 2022'
+    ],
+    imgAction:   CDN + '2025/09/DAPRELA_ACTION-1024x512.jpg.webp',
+    imgPortrait: CDN + '2025/09/DAPRELA_PORTRAIT-1024x512.jpg.webp',
+    glove: 'Enduro Air Evo', gloveHref: 'produit.html',
+    instagram: '#', facebook: '#'
+  },
+  {
+    name: 'Thomas Genon',
+    discipline: 'Freeride MTB',
+    country: 'BEL',
+    achievements: [
+      'Vainqueur Red Bull Rampage 2018',
+      'Swatch Xtreme Verbier',
+      'Rider Five depuis 2014'
+    ],
+    imgAction:   CDN + '2025/09/GENON_ACTION-1024x512.jpg.webp',
+    imgPortrait: CDN + '2025/09/GENON_PORTRAIT-1024x512.jpg.webp',
+    glove: 'Enduro Air Evo', gloveHref: 'produit.html',
+    instagram: '#', facebook: '#'
+  },
+  {
+    name: 'Peter Hickman',
+    discipline: 'Tourist Trophy',
+    country: 'GBR',
+    achievements: [
+      'Record absolu TT — 217.989 mph',
+      '20+ victoires au Tourist Trophy',
+      'Référence de l\'Isle of Man'
+    ],
+    imgAction:   CDN + '2025/09/Hickman-action-1024x512.jpg.webp',
+    imgPortrait: CDN + '2025/09/HICKMAN-PORTRAIT-1024x512.jpg.webp',
+    glove: 'RFX Race', gloveHref: 'produit.html',
+    instagram: '#', facebook: '#'
+  },
+  {
+    name: 'Andrea Locatelli',
+    discipline: 'World Superbike',
+    country: 'ITA',
+    achievements: [
+      'Champion Supersport 2020',
+      'Équipe Pata Yamaha WorldSBK',
+      '12 victoires WorldSBK'
+    ],
+    imgAction:   CDN + '2026/03/LOCATELLI-ACTION_B_2026-1024x512.jpg.webp',
+    imgPortrait: CDN + '2026/03/LOCATELLI-PORTRAIT_2026-1024x512.jpg.webp',
+    glove: 'RFX Race', gloveHref: 'produit.html',
+    instagram: '#', facebook: '#'
+  }
+];
+
 const MARQUEE_ITEMS = [
   'Livraison offerte dès 80€',
   'Retours gratuits sous 30 jours',
