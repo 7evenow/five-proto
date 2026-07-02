@@ -88,7 +88,7 @@
   /* ---------- Interactions ---------- */
   drawer.addEventListener('click', e => {
     if (e.target.closest('[data-cart-close]')) { close(); return; }
-    if (e.target.closest('[data-cart-checkout]')) { window.location.href = 'panier.html'; return; }
+    if (e.target.closest('[data-cart-checkout]')) { window.location.href = 'checkout.html'; return; }
     const line = e.target.closest('.cart-line');
     if (!line) return;
     const k = line.dataset.k;
@@ -126,6 +126,7 @@
       write(items); render();
     },
     removeLine(key) { items = items.filter(i => lineKey(i) !== key); write(items); render(); },
+    clear() { items = []; write(items); render(); },
     items: () => items.map(i => Object.assign({}, i)),
     key: lineKey,
     subtotal: totalPrice,

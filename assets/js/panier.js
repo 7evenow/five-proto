@@ -94,7 +94,7 @@
 
   // checkout (délégué car le résumé est re-rendu)
   summary.addEventListener('click', e => {
-    if (e.target.closest('[data-checkout]')) toast('Paiement — à venir 🏁');
+    if (e.target.closest('[data-checkout]')) window.location.href = 'checkout.html';
   });
 
   window.FiveCart.onChange(render);

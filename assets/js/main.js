@@ -68,7 +68,7 @@
     return `<article class="card" data-cat="${p.cat}">
       <div class="card__media">
         ${badgeHTML(p.badge)}
-        <button class="wishlist" aria-label="Ajouter aux favoris" aria-pressed="false">
+        <button class="wishlist${(window.FiveWish && FiveWish.has(p.id)) ? ' is-active' : ''}" data-wish="${p.id}" aria-label="Ajouter aux favoris" aria-pressed="${(window.FiveWish && FiveWish.has(p.id)) ? 'true' : 'false'}">
           <svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-9.5-9C1 9 2.5 5 6 5c2 0 3.2 1.2 4 2.5C10.8 6.2 12 5 14 5c3.5 0 5 4 3.5 7-2.5 4.5-9.5 9-9.5 9z"/></svg>
         </button>
         <a class="card__media-link" href="produit.html?id=${p.id}" aria-label="Voir ${p.name}">
@@ -103,11 +103,6 @@
           size: add.dataset.size
         });
         return;
-      }
-      const wish = e.target.closest('.wishlist');
-      if (wish) {
-        const on = wish.classList.toggle('is-active');
-        wish.setAttribute('aria-pressed', String(on));
       }
       const sw = e.target.closest('.swatch');
       if (sw) {

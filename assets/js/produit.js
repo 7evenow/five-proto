@@ -147,11 +147,14 @@
     qty = Math.max(1, qty + parseInt(b.dataset.q, 10));
     $('#qty').textContent = qty;
   });
-  $('#p-wish').addEventListener('click', () => {
-    const on = $('#p-wish').classList.toggle('is-active');
-    $('#p-wish').setAttribute('aria-pressed', String(on));
-    toast(on ? 'Ajouté aux favoris' : 'Retiré des favoris');
-  });
+  // favoris : géré par wishlist.js (délégation via [data-wish])
+  const pWish = $('#p-wish');
+  if (pWish) {
+    pWish.dataset.wish = product.id;
+    const on = !!(window.FiveWish && window.FiveWish.has(product.id));
+    pWish.classList.toggle('is-active', on);
+    pWish.setAttribute('aria-pressed', String(on));
+  }
   $('#add-cart').addEventListener('click', () => {
     if (!currentSize) {
       toast('Choisis une taille');

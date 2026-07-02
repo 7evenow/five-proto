@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIVE — Commande</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body class="page-checkout">
+  <!-- ============ HEADER (allégé) ============ -->
+  <header class="site-header is-solid co-header" id="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo" aria-label="FIVE accueil"><img src="assets/svg/five-logo_white.svg" alt="FIVE" height="22" /></a>
+      <a href="panier.html" class="co-header__back">← Retour au panier</a>
+      <span class="co-header__secure">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v6c0 5-3 8-7 9-4-1-7-4-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
+        Paiement sécurisé
+      </span>
+    </div>
+  </header>
+
+  <main class="checkout">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Fil d'ariane">
+        <a href="index.html">Accueil</a><span>/</span>
+        <a href="panier.html">Panier</a><span>/</span>
+        <span aria-current="page">Commande</span>
+      </nav>
+
+      <!-- ===== état commande ===== -->
+      <div class="co-layout" id="co-layout">
+        <form class="co-form" id="co-form" novalidate>
+          <div class="co-titlebar">
+            <h1 class="co-title">Commande</h1>
+            <button type="button" class="co-fill" id="co-fill">⚡ Remplir (test)</button>
+          </div>
+
+          <section class="co-block">
+            <h2 class="co-step"><span>1</span> Contact</h2>
+            <div class="co-field">
+              <label for="co-email">E-mail</label>
+              <input type="email" id="co-email" name="email" autocomplete="email" placeholder="ton@email.com" required />
+            </div>
+          </section>
+
+          <section class="co-block">
+            <h2 class="co-step"><span>2</span> Livraison</h2>
+            <div class="co-row">
+              <div class="co-field"><label for="co-fn">Prénom</label><input id="co-fn" name="firstname" autocomplete="given-name" required /></div>
+              <div class="co-field"><label for="co-ln">Nom</label><input id="co-ln" name="lastname" autocomplete="family-name" required /></div>
+            </div>
+            <div class="co-field"><label for="co-addr">Adresse</label><input id="co-addr" name="address" autocomplete="street-address" required /></div>
+            <div class="co-row">
+              <div class="co-field co-field--sm"><label for="co-zip">Code postal</label><input id="co-zip" name="zip" inputmode="numeric" autocomplete="postal-code" required /></div>
+              <div class="co-field"><label for="co-city">Ville</label><input id="co-city" name="city" autocomplete="address-level2" required /></div>
+            </div>
+            <div class="co-row">
+              <div class="co-field"><label for="co-country">Pays</label>
+                <select id="co-country" name="country">
+                  <option>France</option><option>Belgique</option><option>Suisse</option><option>Luxembourg</option>
+                </select>
+              </div>
+              <div class="co-field"><label for="co-phone">Téléphone</label><input id="co-phone" name="phone" inputmode="tel" autocomplete="tel" /></div>
+            </div>
+
+            <p class="co-sublabel">Mode de livraison</p>
+            <div class="co-ship" id="co-ship">
+              <label class="co-ship__opt is-active">
+                <input type="radio" name="ship" value="standard" checked />
+                <span class="co-ship__main"><strong>Standard</strong><small>2 à 4 jours ouvrés</small></span>
+                <span class="co-ship__price" data-ship-standard>—</span>
+              </label>
+              <label class="co-ship__opt">
+                <input type="radio" name="ship" value="express" />
+                <span class="co-ship__main"><strong>Express</strong><small>24 à 48 h</small></span>
+                <span class="co-ship__price">9,90 €</span>
+              </label>
+            </div>
+          </section>
+
+          <section class="co-block">
+            <h2 class="co-step"><span>3</span> Paiement</h2>
+            <div class="co-pay-methods" id="co-pay-methods">
+              <button type="button" class="co-pay-method is-active" data-pay="card">Carte bancaire</button>
+              <button type="button" class="co-pay-method" data-pay="paypal">PayPal</button>
+            </div>
+            <div class="co-card" id="co-card">
+              <p class="co-field-lbl">Informations de carte</p>
+              <div class="stripe-card">
+                <div class="stripe-row">
+                  <input id="co-cardnum" inputmode="numeric" placeholder="1234 1234 1234 1234" autocomplete="cc-number" aria-label="Numéro de carte" />
+                  <span class="stripe-brands" aria-hidden="true">
+                    <svg viewBox="0 0 40 24"><rect width="40" height="24" rx="3" fill="#1a1f71"/><text x="20" y="16.5" fill="#fff" font-family="Arial, sans-serif" font-size="9" font-weight="700" letter-spacing="1" text-anchor="middle">VISA</text></svg>
+                    <svg viewBox="0 0 40 24"><rect width="40" height="24" rx="3" fill="#fff" stroke="#e6e6e6"/><circle cx="16.5" cy="12" r="6.5" fill="#eb001b"/><circle cx="23.5" cy="12" r="6.5" fill="#f79e1b" fill-opacity=".85"/></svg>
+                    <svg viewBox="0 0 40 24"><rect width="40" height="24" rx="3" fill="#016fd0"/><text x="20" y="15.5" fill="#fff" font-family="Arial, sans-serif" font-size="6.5" font-weight="700" text-anchor="middle">AMEX</text></svg>
+                  </span>
+                </div>
+                <div class="stripe-row stripe-row--split">
+                  <input id="co-exp" placeholder="MM / AA" autocomplete="cc-exp" aria-label="Date d'expiration" />
+                  <input id="co-cvc" inputmode="numeric" placeholder="CVC" autocomplete="cc-csc" aria-label="Cryptogramme" />
+                </div>
+                <div class="stripe-row">
+                  <input id="co-cardname" placeholder="Nom sur la carte" autocomplete="cc-name" aria-label="Nom sur la carte" />
+                </div>
+              </div>
+              <p class="stripe-badge">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+                Paiement sécurisé, propulsé par <b>stripe</b>
+              </p>
+            </div>
+            <p class="co-paypal" id="co-paypal" hidden>Tu seras redirigé vers PayPal pour finaliser le paiement (simulation).</p>
+          </section>
+
+          <p class="co-error" id="co-error" role="alert"></p>
+          <button type="submit" class="btn btn--red co-submit" id="co-submit">Payer <span id="co-submit-total"></span></button>
+          <p class="co-reassure">Paiement chiffré · Livraison offerte dès 80€ · Retours gratuits sous 30 jours</p>
+        </form>
+
+        <aside class="co-summary" id="co-summary"><!-- JS --></aside>
+      </div>
+
+      <!-- ===== confirmation ===== -->
+      <div class="co-confirm" id="co-confirm" hidden>
+        <div class="co-confirm__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 9"/></svg>
+        </div>
+        <p class="overline overline--dark">Commande confirmée</p>
+        <h1 class="co-confirm__title">Merci, <span id="co-confirm-name">pilote</span> !</h1>
+        <p class="co-confirm__lead">Ta commande <strong id="co-confirm-num">#FIVE-000000</strong> est bien enregistrée. Un e-mail de confirmation part vers <strong id="co-confirm-email">toi</strong>.</p>
+        <p class="co-confirm__total" id="co-confirm-total"></p>
+        <div class="co-confirm__actions">
+          <a href="index.html" class="btn btn--red">Retour à l'accueil</a>
+          <a href="index.html#nouveautes" class="btn btn--ghost btn--ghost-dark">Continuer mes achats</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/checkout.js"></script>
+</body>
+</html>
