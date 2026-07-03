@@ -72,10 +72,10 @@
         <p class="overline overline--dark" id="p-cat">Catégorie</p>
         <h1 class="product__name" id="p-name">Produit</h1>
 
-        <div class="product__rating">
+        <a class="product__rating" href="#reviews" id="p-rating">
           <span class="stars" aria-hidden="true">★★★★★</span>
-          <span>4.8 · 124 avis</span>
-        </div>
+          <span id="p-rating-text">4.8 · 124 avis</span>
+        </a>
 
         <p class="product__price" id="p-price">—</p>
 
@@ -87,7 +87,7 @@
         </div>
 
         <div class="product__opt">
-          <p class="opt-label">Taille <a href="#" class="opt-link">Guide des tailles</a></p>
+          <p class="opt-label">Taille <a href="#" class="opt-link" data-action="sizeguide">Guide des tailles</a></p>
           <div class="sizes" id="p-sizes"></div>
         </div>
 
@@ -137,6 +137,11 @@
       </div>
     </section>
 
+    <!-- ============ AVIS CLIENTS ============ -->
+    <section class="reviews" id="reviews">
+      <div class="container" id="reviews-root"><!-- JS (FiveReviews) --></div>
+    </section>
+
     <!-- ============ TECHNO ============ -->
     <section class="techno">
       <div class="container">
@@ -179,7 +184,7 @@
       </nav>
       <nav class="footer__col" aria-label="Aide">
         <h4>Aide</h4>
-        <ul><li><a href="#">Guide des tailles</a></li><li><a href="#">Livraison &amp; retours</a></li><li><a href="#">Suivi de commande</a></li><li><a href="#">Contact</a></li></ul>
+        <ul><li><a href="#" data-action="sizeguide">Guide des tailles</a></li><li><a href="#">Livraison &amp; retours</a></li><li><a href="#">Suivi de commande</a></li><li><a href="#">Contact</a></li></ul>
       </nav>
       <nav class="footer__col" aria-label="Maison Five">
         <h4>Maison Five</h4>
@@ -196,8 +201,11 @@
 
   <script src="assets/js/data.js"></script>
   <script src="assets/js/cart.js"></script>
+  <script src="assets/js/auth.js"></script>
   <script src="assets/js/wishlist.js"></script>
   <script src="assets/js/search.js"></script>
+  <script src="assets/js/sizeguide.js"></script>
+  <script src="assets/js/reviews.js"></script>
   <script src="assets/js/nav.js"></script>
   <script src="assets/js/produit.js"></script>
 </body>

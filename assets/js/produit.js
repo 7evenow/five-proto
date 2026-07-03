@@ -194,6 +194,33 @@
       </div>
     </a>`).join('');
 
+  /* ---------- Avis clients ---------- */
+  if (window.FiveReviews) {
+    const ratingEl = $('#p-rating');
+    const ratingTxt = $('#p-rating-text');
+    function refreshRating() {
+      const s = window.FiveReviews.summary(product.id);
+      const avg = Math.round(s.avg * 10) / 10;
+      if (ratingTxt) ratingTxt.textContent = `${avg.toString().replace('.', ',')} · ${s.count} avis`;
+      if (!ratingEl) return;
+      let rs = ratingEl.querySelector('.rev-stars');
+      if (!rs) {
+        const old = ratingEl.querySelector('.stars');
+        if (old) old.outerHTML = window.FiveReviews.starsHTML(s.avg);
+      } else {
+        const fill = rs.querySelector('.rev-stars__fill');
+        if (fill) fill.style.width = Math.max(0, Math.min(100, s.avg / 5 * 100)) + '%';
+      }
+    }
+    refreshRating();
+    window.FiveReviews.mount(product.id, $('#reviews-root'));
+    if (ratingEl) ratingEl.addEventListener('click', e => {
+      e.preventDefault();
+      document.getElementById('reviews').scrollIntoView({ behavior: 'smooth' });
+    });
+    window.FiveReviews.onChange(refreshRating);
+  }
+
   /* ---------- Reveal au scroll ---------- */
   const io = new IntersectionObserver((entries) => {
     entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); } });

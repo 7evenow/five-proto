@@ -59,6 +59,28 @@
   }
   renderSummary();
 
+  /* ---------- Pré-remplissage depuis le compte connecté ---------- */
+  (function prefillFromAccount() {
+    const auth = window.FiveAuth;
+    if (!auth || !auth.isLoggedIn()) return;
+    const u = auth.current();
+    const set = (name, v) => { const f = form.elements[name]; if (f && !f.value) f.value = v || ''; };
+    set('email', u.email);
+    set('firstname', u.firstname);
+    set('lastname', u.lastname);
+    set('phone', u.phone);
+    const addr = (u.addresses || []).find(a => a.default) || (u.addresses || [])[0];
+    if (addr) {
+      set('firstname', addr.firstname);
+      set('lastname', addr.lastname);
+      set('address', addr.address);
+      set('zip', addr.zip);
+      set('city', addr.city);
+      if (form.country && addr.country) form.country.value = addr.country;
+      set('phone', addr.phone);
+    }
+  })();
+
   /* ---------- Sélecteur de livraison ---------- */
   $('#co-ship').addEventListener('change', e => {
     $$('.co-ship__opt').forEach(o => o.classList.toggle('is-active', o.contains(e.target) && e.target.checked));
@@ -138,6 +160,33 @@
       const email = form.email.value.trim();
       const num = 'FIVE-' + Math.floor(100000 + Math.random() * 900000);
       const paid = total();
+
+      /* persistance de la commande (visible dans « Mon compte ») */
+      try {
+        const order = {
+          num: num,
+          date: new Date().toISOString(),
+          status: 'Confirmée',
+          email: email,
+          firstname: firstname,
+          lastname: form.lastname.value.trim(),
+          items: items.map(i => ({ id: i.id, name: i.name, price: i.price, qty: i.qty, img: i.img, variant: i.variant || '', size: i.size || '' })),
+          subtotal: sub(),
+          shipping: shipCost(),
+          total: paid,
+          shipMode: shipMode(),
+          payMethod: payMethod,
+          address: {
+            firstname: firstname, lastname: form.lastname.value.trim(),
+            address: form.address.value.trim(), zip: form.zip.value.trim(),
+            city: form.city.value.trim(), country: form.country ? form.country.value : 'France',
+            phone: form.phone ? form.phone.value.trim() : ''
+          }
+        };
+        const all = JSON.parse(localStorage.getItem('five_orders')) || [];
+        all.unshift(order);
+        localStorage.setItem('five_orders', JSON.stringify(all));
+      } catch (e) { /* stockage indisponible : on ignore */ }
 
       $('#co-confirm-name').textContent = firstname;
       $('#co-confirm-num').textContent = '#' + num;
