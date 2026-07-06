@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FIVE — Catégorie</title>
+  <title>FIVE — Pilote</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
-<body class="page-category">
+<body class="page-pilote">
   <!-- ============ HEADER ============ -->
   <header class="site-header is-solid" id="header">
     <div class="container header__inner">
@@ -43,30 +43,55 @@
   </header>
 
   <main>
-    <!-- ============ HERO CATÉGORIE ============ -->
-    <section class="cat-hero" id="cat-hero">
-      <img class="cat-hero__bg" id="cat-hero-img" src="" alt="" referrerpolicy="no-referrer" />
-      <div class="cat-hero__overlay" aria-hidden="true"></div>
-      <div class="container cat-hero__inner">
+    <!-- ============ HÉRO PILOTE ============ -->
+    <section class="rp-hero">
+      <img class="rp-hero__bg" id="rp-bg" src="" alt="" referrerpolicy="no-referrer" />
+      <div class="rp-hero__veil" aria-hidden="true"></div>
+      <div class="container rp-hero__inner">
         <nav class="breadcrumb breadcrumb--light" aria-label="Fil d'ariane">
           <a href="index.html">Accueil</a><span>/</span>
-          <a href="index.html#categories" id="bc-parent">Gants moto</a><span>/</span>
-          <span id="bc-cat" aria-current="page">Catégorie</span>
+          <a href="team.html">La Team Five</a><span>/</span>
+          <span id="rp-bc-name" aria-current="page">Pilote</span>
         </nav>
-        <p class="overline" id="cat-tag">Gants moto</p>
-        <h1 class="cat-hero__title" id="cat-name">Catégorie</h1>
-        <p class="cat-hero__desc" id="cat-desc"></p>
+        <div class="rp-hero__bottom">
+          <div>
+            <p class="overline" id="rp-tag">Pays · Discipline</p>
+            <h1 class="rp-hero__title" id="rp-name">Nom du pilote</h1>
+            <span class="rp-hero__badge" id="rp-badge">Pilote Moto</span>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- ============ LISTE PRODUITS ============ -->
-    <section class="cat-list">
-      <div class="container cat-layout">
-        <aside class="cat-sidebar" id="cat-sidebar" aria-label="Filtres et gammes"><!-- JS --></aside>
-        <div class="cat-main">
-          <div class="cat-chips" id="cat-chips"><!-- JS --></div>
-          <div class="cat-groups" id="cat-groups"><!-- JS --></div>
+    <!-- ============ SPOTLIGHT GANT ============ -->
+    <section class="rp-spot" id="rp-spot"><!-- JS --></section>
+
+    <!-- ============ CORPS ============ -->
+    <section class="rp-body">
+      <div class="container rp-layout">
+        <div class="rp-main">
+          <p class="rp-intro" id="rp-intro"></p>
+
+          <h2 class="section-title section-title--light rp-section-title">Palmarès</h2>
+          <ul class="rp-achievements" id="rp-achievements"><!-- JS --></ul>
         </div>
+
+        <aside class="rp-side">
+          <div class="rp-socials" id="rp-socials"><!-- JS --></div>
+
+          <a href="team.html" class="rp-back">← Toute la Team Five</a>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============ AUTRES PILOTES ============ -->
+    <section class="rp-others">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="overline" id="rp-others-tag">Même discipline</p>
+          <h2 class="section-title section-title--light">D'autres pilotes Five</h2>
+        </header>
+        <div class="tpg-grid rp-others__grid" id="rp-others-grid"><!-- JS --></div>
       </div>
     </section>
   </main>
@@ -112,6 +137,6 @@
   <script src="assets/js/search.js"></script>
   <script src="assets/js/sizeguide.js"></script>
   <script src="assets/js/nav.js"></script>
-  <script src="assets/js/categorie.js"></script>
+  <script src="assets/js/pilote.js"></script>
 </body>
 </html>

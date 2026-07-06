@@ -326,19 +326,24 @@
 
   /* ---------- 12. Team Five — carrousel ---------- */
   const teamTrack = $('#team-track');
-  if (teamTrack && typeof TEAM !== 'undefined') {
+  const HOME_TEAM = (typeof RIDERS !== 'undefined' && typeof HOME_RIDER_IDS !== 'undefined')
+    ? HOME_RIDER_IDS.map(id => RIDERS.find(r => r.id === id)).filter(Boolean)
+    : [];
+  if (teamTrack && HOME_TEAM.length) {
     const mkCard = a => `
       <article class="team-card" tabindex="0">
-        <img class="team-card__img" src="${a.imgPortrait}" alt="${a.name}" loading="lazy" referrerpolicy="no-referrer" />
+        <a class="team-card__media-link" href="pilote.html?id=${a.id}" aria-label="Voir le profil de ${a.name}">
+          <img class="team-card__img" src="${a.img}" alt="${a.name}" loading="lazy" referrerpolicy="no-referrer" />
+        </a>
         <div class="team-card__content">
           <span class="team-card__country">${a.country} · ${a.discipline}</span>
-          <span class="team-card__name">${a.name}</span>
+          <a class="team-card__name" href="pilote.html?id=${a.id}">${a.name}</a>
           <div class="team-card__reveal">
             <ul class="team-card__achievements">
               ${a.achievements.map(t => `<li>${t}</li>`).join('')}
             </ul>
             <div class="team-card__foot">
-              <a href="${a.gloveHref}" class="team-card__glove">
+              <a href="${a.gloveId ? 'produit.html?id=' + a.gloveId : 'produit.html'}" class="team-card__glove">
                 <span class="team-card__glove-lbl">Son gant</span>
                 <span class="team-card__glove-name">${a.glove} <span class="arrow">→</span></span>
               </a>
@@ -355,10 +360,10 @@
         </div>
       </article>`;
 
-    const N = TEAM.length;
+    const N = HOME_TEAM.length;
     // 3 copies → boucle infinie (reste toujours dans la copie du milieu)
     let html = '';
-    for (let r = 0; r < 3; r++) html += TEAM.map(mkCard).join('');
+    for (let r = 0; r < 3; r++) html += HOME_TEAM.map(mkCard).join('');
     teamTrack.innerHTML = html;
 
     const teamCards = $$('.team-card', teamTrack);

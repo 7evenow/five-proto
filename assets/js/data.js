@@ -340,94 +340,122 @@ const TECHNOS = [
     img: IMG + '2025/09/FIVE-MOTO-RACING-PERFORMANCE-rfx2-evo-black-white-focus04.jpg' },
 ];
 
-/* ---- Team Five ---- */
+/* ---- Team Five — source unique (roster complet, home + team.html + fiches pilote) ----
+   family: 'moto' | 'velo' — gloveId : id produit du catalogue quand la correspondance
+   est certaine (sinon omis, la fiche pilote affiche juste le nom du modèle). */
 const CDN = 'https://five-gloves.com/wp-content/smush-webp/';
-const TEAM = [
-  {
-    name: 'Sylvain André',
-    discipline: 'BMX Racing',
-    country: 'FRA',
-    achievements: [
-      'Champion du Monde BMX 2019, 2022 & 2023',
-      'Médaillé olympique Tokyo & Paris',
-      '3× Champion d\'Europe BMX'
-    ],
-    imgAction:   CDN + '2025/09/ANDRE_ACTION-1024x512.jpg.webp',
-    imgPortrait: CDN + '2025/09/ANDRE_PORTRAIT-1024x512.jpg.webp',
-    glove: 'RFX Sport Evo', gloveHref: 'produit.html',
-    instagram: 'https://www.instagram.com/sylvainandrebmx/', facebook: '#'
-  },
-  {
-    name: 'Thibault Benistant',
-    discipline: 'Motocross MXGP',
-    country: 'FRA',
-    achievements: [
-      'Champion du Monde MX2 2022',
-      'Pilote Team Yamaha Factory MXGP',
-      'Multiple podiums GP 2023/24'
-    ],
-    imgAction:   CDN + '2026/03/BENISTANT-ACTION_2026-1024x512.jpg.webp',
-    imgPortrait: CDN + '2026/03/BENISTANT-PORTRAIT_2026-1024x512.jpg.webp',
-    glove: 'MXF Race', gloveHref: 'produit.html',
-    instagram: '#', facebook: '#'
-  },
-  {
-    name: 'Thibaut Daprela',
-    discipline: 'Downhill VTT',
-    country: 'FRA',
-    achievements: [
-      'Champion du Monde DH 2022',
-      'Vainqueur Coupe du Monde DH 2021',
-      'Val di Sole Champion 2022'
-    ],
-    imgAction:   CDN + '2025/09/DAPRELA_ACTION-1024x512.jpg.webp',
-    imgPortrait: CDN + '2025/09/DAPRELA_PORTRAIT-1024x512.jpg.webp',
-    glove: 'Enduro Air Evo', gloveHref: 'produit.html',
-    instagram: '#', facebook: '#'
-  },
-  {
-    name: 'Thomas Genon',
-    discipline: 'Freeride MTB',
-    country: 'BEL',
-    achievements: [
-      'Vainqueur Red Bull Rampage 2018',
-      'Swatch Xtreme Verbier',
-      'Rider Five depuis 2014'
-    ],
-    imgAction:   CDN + '2025/09/GENON_ACTION-1024x512.jpg.webp',
-    imgPortrait: CDN + '2025/09/GENON_PORTRAIT-1024x512.jpg.webp',
-    glove: 'Enduro Air Evo', gloveHref: 'produit.html',
-    instagram: '#', facebook: '#'
-  },
-  {
-    name: 'Peter Hickman',
-    discipline: 'Tourist Trophy',
-    country: 'GBR',
-    achievements: [
-      'Record absolu TT — 217.989 mph',
-      '20+ victoires au Tourist Trophy',
-      'Référence de l\'Isle of Man'
-    ],
-    imgAction:   CDN + '2025/09/Hickman-action-1024x512.jpg.webp',
-    imgPortrait: CDN + '2025/09/HICKMAN-PORTRAIT-1024x512.jpg.webp',
-    glove: 'RFX Race', gloveHref: 'produit.html',
-    instagram: '#', facebook: '#'
-  },
-  {
-    name: 'Andrea Locatelli',
-    discipline: 'World Superbike',
-    country: 'ITA',
-    achievements: [
-      'Champion Supersport 2020',
-      'Équipe Pata Yamaha WorldSBK',
-      '12 victoires WorldSBK'
-    ],
-    imgAction:   CDN + '2026/03/LOCATELLI-ACTION_B_2026-1024x512.jpg.webp',
-    imgPortrait: CDN + '2026/03/LOCATELLI-PORTRAIT_2026-1024x512.jpg.webp',
-    glove: 'RFX Race', gloveHref: 'produit.html',
-    instagram: '#', facebook: '#'
-  }
+const RIDERS = [
+  /* --- Moto (18) --- */
+  { id: 'dominique-aegerter', name: 'Dominique Aegerter', family: 'moto', country: 'CHE', discipline: 'World Supersport',
+    achievements: ['Champion du monde SSP 2021 & 2022', '24 victoires en World Supersport', 'Pilote expérimenté WorldSBK'],
+    img: CDN + '2026/03/AEGERTER-ACTION_2026-1024x512.jpg.webp',
+    glove: 'RFX1 EVO', gloveId: 'rfx2-evo', instagram: 'https://www.instagram.com/DomiAegerter77/', facebook: '#' },
+  { id: 'thibault-benistant', name: 'Thibault Benistant', family: 'moto', country: 'FRA', discipline: 'Motocross MXGP',
+    achievements: ['Champion du monde MX2 2022', 'Champion Europe EMX250 2020', 'Champion Europe EMX125 2018'],
+    img: CDN + '2026/03/BENISTANT-PORTRAIT_2026-1024x512.jpg.webp',
+    glove: 'MXF Race', gloveId: 'rfx-race', instagram: '#', facebook: '#' },
+  { id: 'ana-carrasco', name: 'Ana Carrasco', family: 'moto', country: 'ESP', discipline: 'World Supersport 300',
+    achievements: ['1re femme championne du monde moto — SSP300 2018', 'Multiple victoires World Supersport 300', 'Icône du sport moto international'],
+    img: CDN + '2025/09/CARRASCO-ACTION-1024x512.jpg.webp',
+    glove: 'RFX1 EVO Woman', gloveId: 'rfx2-evo', instagram: '#', facebook: '#' },
+  { id: 'mano-faure', name: 'Mano Faure', family: 'moto', country: 'FRA', discipline: 'EMX250 / MXGP',
+    achievements: ['Champion du monde Junior MX 2025', 'Révélation MXGP saison 2024/25'],
+    img: CDN + '2025/09/FAURE-ACTION-1024x512.jpg.webp',
+    glove: 'MXF Race', gloveId: 'rfx-race', instagram: '#', facebook: '#' },
+  { id: 'marvin-fritz', name: 'Marvin Fritz', family: 'moto', country: 'DEU', discipline: 'Endurance EWC',
+    achievements: ['Champion du monde Endurance 2023 & 2025', 'Vainqueur 24h du Mans 2025'],
+    img: 'https://five-gloves.com/wp-content/uploads/2025/09/Fritz-action.jpg',
+    glove: 'RFX1 EVO', gloveId: 'rfx2-evo', instagram: '#', facebook: '#' },
+  { id: 'karel-hanika', name: 'Karel Hanika', family: 'moto', country: 'CZE', discipline: 'Endurance EWC',
+    achievements: ['Champion du monde Endurance 2023 & 2025', 'Vainqueur 24h du Mans 2025'],
+    img: 'https://five-gloves.com/wp-content/uploads/2025/09/Hanika-action.jpg',
+    glove: 'RFX1 EVO', gloveId: 'rfx2-evo', instagram: '#', facebook: '#' },
+  { id: 'peter-hickman', name: 'Peter Hickman', family: 'moto', country: 'GBR', discipline: 'Tourist Trophy',
+    achievements: ['14× vainqueur du Tourist Trophy', 'Record absolu du tour — 217.989 mph', 'Référence absolue de l\'Isle of Man'],
+    img: CDN + '2025/09/HICKMAN-PORTRAIT-1024x512.jpg.webp',
+    glove: 'RFX Race', gloveId: 'rfx-race', instagram: '#', facebook: '#' },
+  { id: 'steve-holcombe', name: 'Steve Holcombe', family: 'moto', country: 'GBR', discipline: 'EnduroGP',
+    achievements: ['9× Champion du monde Enduro', 'Domination GP Enduro 2017–2020'],
+    img: 'https://five-gloves.com/wp-content/uploads/2026/03/HOLCOMBE-ACTION_2026.jpg',
+    glove: 'E2', gloveId: 'stunt-evo-2', instagram: '#', facebook: '#' },
+  { id: 'kevin-horgmo', name: 'Kevin Horgmo', family: 'moto', country: 'NOR', discipline: 'MXGP',
+    achievements: ['Vice-champion EMX250 2021', 'Champion de France MX1 2025', 'Pilote MXGP Factory'],
+    img: 'https://five-gloves.com/wp-content/uploads/2025/09/Horgmo-action.jpg',
+    glove: 'MXF Race', gloveId: 'rfx-race', instagram: '#', facebook: '#' },
+  { id: 'loic-larrieu', name: 'Loïc Larrieu', family: 'moto', country: 'FRA', discipline: 'EnduroGP',
+    achievements: ['Champion du monde Enduro 2019', '8× Champion de France Enduro'],
+    img: CDN + '2025/09/LARRIEU-ACTION-1024x512.jpg.webp',
+    glove: 'MXF1 EVO', gloveId: 'rfx2-evo', instagram: '#', facebook: '#' },
+  { id: 'andrea-locatelli', name: 'Andrea Locatelli', family: 'moto', country: 'ITA', discipline: 'World Superbike',
+    achievements: ['Champion Supersport 2020', 'Équipe Pata Yamaha WorldSBK', '12 victoires WorldSBK'],
+    img: CDN + '2026/03/LOCATELLI-PORTRAIT_2026-1024x512.jpg.webp',
+    glove: 'RFX1 EVO', gloveId: 'rfx2-evo', instagram: '#', facebook: '#' },
+  { id: 'sam-lowes', name: 'Sam Lowes', family: 'moto', country: 'GBR', discipline: 'World Superbike',
+    achievements: ['Champion Supersport 2013', 'Multiple podiums WorldSBK', 'Expérience MotoGP & Moto2'],
+    img: 'https://five-gloves.com/wp-content/uploads/2026/03/LOWES-ACTION_B_2026.jpg',
+    glove: 'RFX1 EVO', gloveId: 'rfx2-evo', instagram: '#', facebook: '#' },
+  { id: 'lucas-mahias', name: 'Lucas Mahias', family: 'moto', country: 'FRA', discipline: 'World Supersport',
+    achievements: ['Champion du monde Endurance 2016', 'Champion Supersport 2017', 'Multiple victoires internationales'],
+    img: 'https://five-gloves.com/wp-content/uploads/2026/03/MAHIAS-ACTION_2026.jpg',
+    glove: 'RFX Race', gloveId: 'rfx-race', instagram: '#', facebook: '#' },
+  { id: 'leandro-mercado', name: 'Leandro Mercado', family: 'moto', country: 'ARG', discipline: 'Endurance EWC',
+    achievements: ['Champion AMA Supersport 2009', 'Pilote endurance international confirmé'],
+    img: 'https://five-gloves.com/wp-content/uploads/2026/03/LERCADO-ACTION_2026.jpg',
+    glove: 'RFX1 EVO', gloveId: 'rfx2-evo', instagram: '#', facebook: '#' },
+  { id: 'zach-pichon', name: 'Zach Pichon', family: 'moto', country: 'FRA', discipline: 'EnduroGP',
+    achievements: ['Champion du monde Junior Enduro 2022', 'Champion de France Enduro 2024'],
+    img: CDN + '2025/09/PICHON-ACTION-1024x512.jpg.webp',
+    glove: 'MXF Race', gloveId: 'rfx-race', instagram: '#', facebook: '#' },
+  { id: 'scott-redding', name: 'Scott Redding', family: 'moto', country: 'GBR', discipline: 'British Superbike',
+    achievements: ['Vice-champion WorldSBK 2020', 'Champion British SBK 2019', 'Expérience MotoGP'],
+    img: CDN + '2025/09/REDDING-ACTION-1024x512.jpg.webp',
+    glove: 'RFX1 EVO', gloveId: 'rfx2-evo', instagram: '#', facebook: '#' },
+  { id: 'marc-reiner-schmidt', name: 'Marc-Reiner Schmidt', family: 'moto', country: 'DEU', discipline: 'Supermoto S1GP',
+    achievements: ['4× Champion du monde Supermoto', 'Référence absolue du Supermoto mondial'],
+    img: 'https://five-gloves.com/wp-content/uploads/2026/03/SCHMIDT-ACTION_2026.jpg',
+    glove: 'RFX1 EVO', gloveId: 'rfx2-evo', instagram: '#', facebook: '#' },
+  { id: 'amandine-verstappen', name: 'Amandine Verstappen', family: 'moto', country: 'BEL', discipline: 'Motocross Women',
+    achievements: ['Championne du monde Sand 2024', '8× Championne de France MX Women'],
+    img: 'https://five-gloves.com/wp-content/uploads/2025/09/Verstappen-action.jpg',
+    glove: 'MXF1 EVO', gloveId: 'rfx2-evo', instagram: '#', facebook: '#' },
+
+  /* --- Vélo (8) --- */
+  { id: 'sylvain-andre', name: 'Sylvain André', family: 'velo', country: 'FRA', discipline: 'BMX Racing',
+    achievements: ['Champion du Monde BMX 2019, 2022 & 2023', 'Médaillé olympique Tokyo & Paris', '3× Champion d\'Europe BMX'],
+    img: CDN + '2025/09/ANDRE_PORTRAIT-1024x512.jpg.webp',
+    glove: 'Race Pro', gloveId: 'xr-pro', instagram: 'https://www.instagram.com/sylvainandrebmx/', facebook: '#' },
+  { id: 'zoe-claessens', name: 'Zoé Claessens', family: 'velo', country: 'CHE', discipline: 'BMX World Cup',
+    achievements: ['Médaille de bronze olympique Paris 2024', 'Championne d\'Europe BMX 2024'],
+    img: 'https://five-gloves.com/wp-content/uploads/2025/09/CLAESSENS_ACTION.jpg',
+    glove: 'Race Pro', gloveId: 'xr-pro', instagram: '#', facebook: '#' },
+  { id: 'thibaut-daprela', name: 'Thibaut Daprela', family: 'velo', country: 'FRA', discipline: 'Downhill VTT',
+    achievements: ['Vainqueur Coupe du Monde DH Junior 2018 & 2019', 'Champion de France DH 2024', 'Top DH mondial élite'],
+    img: CDN + '2025/09/DAPRELA_PORTRAIT-1024x512.jpg.webp',
+    glove: 'Enduro Air Evo', gloveId: 'e2-bike', instagram: '#', facebook: '#' },
+  { id: 'noa-filippi', name: 'Noa Filippi', family: 'velo', country: 'FRA', discipline: 'VTT Cross-Country',
+    achievements: ['Champion d\'Europe U17 XCO & XCC 2024', 'Pépite du cross-country français'],
+    img: 'https://five-gloves.com/wp-content/uploads/2025/09/FILIPPI_ACTION.jpg',
+    glove: 'XR-Pro', gloveId: 'xr-pro', instagram: '#', facebook: '#' },
+  { id: 'thomas-genon', name: 'Thomas Genon', family: 'velo', country: 'BEL', discipline: 'Freeride MTB',
+    achievements: ['7× médaillé Crankworx', 'Vainqueur Freeride World Tour', 'Rider Five depuis 2014'],
+    img: CDN + '2025/09/GENON_PORTRAIT-1024x512.jpg.webp',
+    glove: 'XR-Pro', gloveId: 'xr-pro', instagram: '#', facebook: '#' },
+  { id: 'sabina-kosarkova', name: 'Sabina Kosarkova', family: 'velo', country: 'SVK', discipline: 'BMX Pumptrack',
+    achievements: ['Championne du monde Pumptrack 2024 & 2025', '5× vainqueur Crankworx'],
+    img: 'https://five-gloves.com/wp-content/uploads/2025/11/KOSARKOVA_ACTION_02.jpg',
+    glove: 'Race Pro', gloveId: 'xr-pro', instagram: '#', facebook: '#' },
+  { id: 'adrien-loron', name: 'Adrien Loron', family: 'velo', country: 'FRA', discipline: 'Urban Downhill',
+    achievements: ['King of Crankworx', 'Vice-champion 4X 2021', 'Spécialiste Urban Downhill'],
+    img: 'https://five-gloves.com/wp-content/uploads/2025/11/LORON_ACTION_02.jpg',
+    glove: 'Enduro Air Evo', gloveId: 'e2-bike', instagram: 'https://www.instagram.com/adrienloron/', facebook: '#' },
+  { id: 'lucas-rodriguez', name: 'Lucas Rodriguez', family: 'velo', country: 'FRA', discipline: 'VTT Cross-Country',
+    achievements: ['Champion de France U17 XCO & XCR 2025', 'Future référence du cross-country'],
+    img: 'https://five-gloves.com/wp-content/uploads/2025/11/RODRIGUEZ_ACTION.jpg',
+    glove: 'XR-Ride', gloveId: 'xr-lite', instagram: '#', facebook: '#' },
 ];
+
+/* Sélection mise en avant sur l'accueil (mêmes ids, ordre curaté) */
+const HOME_RIDER_IDS = ['sylvain-andre', 'thibault-benistant', 'thibaut-daprela', 'thomas-genon', 'peter-hickman', 'andrea-locatelli'];
 
 const MARQUEE_ITEMS = [
   'Livraison offerte dès 80€',
@@ -449,4 +477,13 @@ const CATEGORIES = [
   { slug: 'heat-technology', name: 'Heat Technology', tag: 'Gants chauffants',  desc: 'La technologie chauffante FIVE pour garder les mains au chaud, même par grand froid.', img: IMG + '2025/09/FIVE-MOTO-HEAT-TECHNOLOGY-hg-prime-evo-gtx-black-action02.jpg' },
   { slug: 'woman',           name: 'Woman',           tag: 'Coupe femme',       desc: 'Des coupes spécifiquement étudiées pour la main féminine, sans compromis sur la protection.', img: IMG + '2025/09/FIVE-MOTO-WOMAN-RACING-rfx-sport-evo-woman-red-action01.jpg' },
   { slug: 'off-road',        name: 'Off-Road',        tag: 'Cross & enduro',    desc: 'Légèreté, grip et liberté de mouvement pour le cross, l\'enduro et le tout-terrain.', img: IMG + '2025/09/FIVE-MOTO-OFF-ROAD-MX-mxf-race-red-action03.jpg' },
+];
+
+/* Catégories vélo (univers) — images lifestyle depuis five-gloves.com */
+const VELO_CATEGORIES = [
+  { slug: 'shorty-road',   name: 'Shorty Road',   tag: 'Route & performance', desc: 'Mitaines légères et ventilées pour la route : préhension précise, coutures plates, confort sur la durée.', img: IMG + '2025/10/FIVE-VELO-ROAD-PERFORMANCE-rc3-action-04.jpg' },
+  { slug: 'mtb',           name: 'MTB',           tag: 'Tout-terrain',        desc: 'Grip, protection et liberté de mouvement pour le VTT, du cross-country à l\'enduro engagé.', img: IMG + '2025/10/FIVE-VELO-MTB-ALLRIDE-xr-pro-action-01.jpg' },
+  { slug: 'bmx',           name: 'BMX',           tag: 'Piste & freestyle',   desc: 'Renforts et accroche pensés pour la piste BMX et le freestyle, sans jamais perdre en précision.', img: IMG + '2025/10/FIVE-VELO-BMX-race-pro-action-02.jpg' },
+  { slug: 'street-urban',  name: 'Street Urban',  tag: 'Ville & quotidien',   desc: 'Discrets et confortables, pensés pour la ville, le fixie et les trajets de tous les jours.', img: IMG + '2025/10/FIVE-VELO-STREET-URBAN-soho-action-04.jpg' },
+  { slug: 'fall-winter',   name: 'Fall / Winter', tag: 'Froid & intempéries', desc: 'Chaleur, étanchéité et grip conservé même par temps froid ou humide, pour ne jamais lever le pied.', img: IMG + '2025/10/FIVE-VELO-FALL-WINTER-EXTREME-COLD-hg-stoke-wp-action-03.jpg' },
 ];

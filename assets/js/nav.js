@@ -21,9 +21,12 @@
     heat: U + '2025/09/FIVE-MOTO-HEAT-TECHNOLOGY-hg-prime-evo-gtx-black-action02.jpg',
     woman: U + '2025/09/FIVE-MOTO-WOMAN-RACING-rfx-sport-evo-woman-red-action01.jpg',
     offroad: U + '2025/09/FIVE-MOTO-OFF-ROAD-MX-mxf-race-red-action03.jpg',
-    veloMtb: U + '2025/10/FIVE-VELO-MTB-HEAVYDUTY-enduro-air-evo-action-05.jpg',
+    veloMtb: U + '2025/10/FIVE-VELO-MTB-ALLRIDE-xr-pro-action-01.jpg',
     veloWinter: U + '2025/10/FIVE-VELO-FALL-WINTER-COLD-LONG-mistral-infinium-focus-03.jpg',
-    veloWp: U + '2025/10/FIVE-VELO-FALL-WINTER-EXTREME-COLD-warm-evo-wp-focus-03.jpg',
+    veloWp: U + '2025/10/FIVE-VELO-FALL-WINTER-EXTREME-COLD-hg-stoke-wp-action-03.jpg',
+    veloRoad: U + '2025/10/FIVE-VELO-ROAD-PERFORMANCE-rc3-action-04.jpg',
+    veloBmx: U + '2025/10/FIVE-VELO-BMX-race-pro-action-02.jpg',
+    veloStreet: U + '2025/10/FIVE-VELO-STREET-URBAN-soho-action-04.jpg',
     rsx: U + '2026/02/FIVE-MOTO-STREET-SPORT-rsx-red-focus-01.jpg',
     tucson: U + '2026/02/FIVE-MOTO-CUSTOM-tucson-dark-brown-focus-01.jpg',
     drytech: U + '2025/09/FIVE-MOTO-RACING-PERFORMANCE-rfx2-evo-black-white-focus02.jpg',
@@ -50,11 +53,11 @@
       ]
     },
     velo: {
-      preview: { img: IMG.veloWinter, tag: 'Sélection hiver', label: 'Mistral Infinium', href: '#' },
+      preview: { img: IMG.veloWinter, tag: 'Sélection hiver', label: 'Mistral Infinium', href: cat('fall-winter') },
       groups: [
         { title: 'Disciplines', items: [
-          L('Shorty road', '#', IMG.veloMtb), L('MTB', '#', IMG.veloMtb), L('BMX', '#', IMG.veloMtb),
-          L('Street urban', '#', IMG.veloWp), L('Fall / winter', '#', IMG.veloWinter)
+          L('Shorty road', cat('shorty-road'), IMG.veloRoad), L('MTB', cat('mtb'), IMG.veloMtb), L('BMX', cat('bmx'), IMG.veloBmx),
+          L('Street urban', cat('street-urban'), IMG.veloStreet), L('Fall / winter', cat('fall-winter'), IMG.veloWinter)
         ] },
         { title: 'Public', items: [L('Homme'), L('Femme'), L('Enfant')] },
         { title: 'Saison', items: [L('Hiver'), L('Été')] },
@@ -169,6 +172,7 @@
   const scheduleClose = () => { closeTimer = setTimeout(close, 130); };
   const cancelClose = () => clearTimeout(closeTimer);
 
+  const mobileAccordions = [];
   navLinks.forEach(a => {
     const key = LABEL_TO_MENU[a.textContent.trim().toLowerCase()];
     if (!key) return;
@@ -176,6 +180,37 @@
     const li = a.parentElement;
     li.addEventListener('mouseenter', () => open(key));
     li.addEventListener('mouseleave', scheduleClose);
+
+    /* ---------- Accordéon mobile (tiroir burger) ---------- */
+    li.classList.add('nav-item--has-sub');
+    const panelId = 'mobile-sub-' + key;
+    const toggle = document.createElement('button');
+    toggle.type = 'button';
+    toggle.className = 'nav-toggle';
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-controls', panelId);
+    toggle.setAttribute('aria-label', 'Afficher le sous-menu ' + a.textContent.trim());
+    toggle.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>';
+    li.appendChild(toggle);
+
+    const panel = document.createElement('div');
+    panel.className = 'nav-sub';
+    panel.id = panelId;
+    panel.innerHTML = `<div class="nav-sub__inner">${MENUS[key].groups.map(g => `
+      <div class="nav-sub__group">
+        <p class="nav-sub__title">${g.title}</p>
+        <ul>${g.items.map(l => `<li><a href="${l.href}">${l.label}</a></li>`).join('')}</ul>
+      </div>`).join('')}</div>`;
+    li.appendChild(panel);
+
+    mobileAccordions.push({ li, toggle });
+    toggle.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      const wasOpen = li.classList.contains('is-open');
+      mobileAccordions.forEach(x => { x.li.classList.remove('is-open'); x.toggle.setAttribute('aria-expanded', 'false'); });
+      if (!wasOpen) { li.classList.add('is-open'); toggle.setAttribute('aria-expanded', 'true'); }
+    });
   });
   wrap.addEventListener('mouseenter', cancelClose);
   wrap.addEventListener('mouseleave', scheduleClose);

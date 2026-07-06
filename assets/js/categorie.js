@@ -22,14 +22,22 @@
   function toast(msg) { toastEl.textContent = msg; toastEl.classList.add('is-visible'); clearTimeout(toastTimer); toastTimer = setTimeout(() => toastEl.classList.remove('is-visible'), 2600); }
   $$('[data-action="search"]').forEach(b => b.addEventListener('click', () => toast('Recherche — à venir')));
 
-  /* ---------- Catégorie ---------- */
+  /* ---------- Catégorie (moto ou vélo) ---------- */
+  const ALL_CATS = CATEGORIES.map(c => Object.assign({ family: 'moto' }, c))
+    .concat((typeof VELO_CATEGORIES !== 'undefined' ? VELO_CATEGORIES : []).map(c => Object.assign({ family: 'velo' }, c)));
   const slug = new URLSearchParams(location.search).get('cat');
-  const idx = Math.max(0, CATEGORIES.findIndex(c => c.slug === slug));
-  const cat = CATEGORIES[idx];
+  const idx = Math.max(0, ALL_CATS.findIndex(c => c.slug === slug));
+  const cat = ALL_CATS[idx];
+  const family = cat.family;
+  const familyLabel = family === 'velo' ? 'Gants vélo' : 'Gants moto';
+  const siblingCats = ALL_CATS.filter(c => c.family === family);
 
   document.title = `FIVE — ${cat.name}`;
   $('#bc-cat').textContent = cat.name;
-  $('#cat-tag').textContent = 'Gants moto · ' + cat.tag;
+  const bcParent = $('#bc-parent');
+  bcParent.textContent = familyLabel;
+  bcParent.href = family === 'velo' ? 'index.html#terrain' : 'index.html#categories';
+  $('#cat-tag').textContent = familyLabel + ' · ' + cat.tag;
   $('#cat-name').textContent = cat.name;
   $('#cat-desc').textContent = cat.desc || '';
   const heroImg = $('#cat-hero-img');
@@ -58,7 +66,7 @@
     </div>
     <nav class="cat-side-block cat-ranges" aria-label="Gammes">
       <p class="cat-side-label">Gammes</p>
-      <ul>${CATEGORIES.map(c => `<li><a href="categorie.html?cat=${c.slug}"${c.slug === cat.slug ? ' class="is-active" aria-current="page"' : ''}>${c.name}</a></li>`).join('')}</ul>
+      <ul>${siblingCats.map(c => `<li><a href="categorie.html?cat=${c.slug}"${c.slug === cat.slug ? ' class="is-active" aria-current="page"' : ''}>${c.name}</a></li>`).join('')}</ul>
     </nav>`;
 
   $('#cat-sidebar').addEventListener('click', e => {
@@ -104,7 +112,7 @@
       </div>
       <div class="card__body">
         <h3 class="card__name"><a href="produit.html?id=${p.id}">${p.name}</a></h3>
-        <p class="card__path">Gants moto · ${cat.name} · ${groupLabel}</p>
+        <p class="card__path">${familyLabel} · ${cat.name} · ${groupLabel}</p>
         <p class="card__coloris">${p.variants.length} coloris</p>
         <div class="swatches">${swatches}</div>
         <div class="card__foot">
