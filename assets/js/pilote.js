@@ -51,8 +51,10 @@
   const spot = $('#rp-spot');
 
   if (product) {
-    // galerie complète : coloris principal + packshots + photos de zoom, dédupliquées
-    const gallery = [product.variants[0].img, ...(product.gallery || []), ...(product.media || [])]
+    // spotlight = packshots produit uniquement (coloris principal + paume), dédupliqués.
+    // Les photos secondaires (media : focus / portrait / action) sont affichées en grand
+    // sous le gant, dans la galerie « effet wow » — pas ici.
+    const gallery = [product.variants[0].img, ...(product.gallery || [])]
       .filter((src, i, arr) => src && arr.indexOf(src) === i)
       .slice(0, 6);
     let current = gallery[0];
@@ -121,6 +123,126 @@
       </div>`;
   }
 
+  /* ---------- Galerie — photos secondaires en grand, sur une ligne, ouvrables ---------- */
+  const galleryEl = $('#rp-gallery');
+  const shots = product ? (product.media || []).filter(Boolean) : [];
+  if (shots.length) {
+    galleryEl.innerHTML = `
+      <div class="container">
+        <header class="section-head section-head--row rp-gallery__head reveal">
+          <div>
+            <p class="overline">En images</p>
+            <h2 class="section-title section-title--light">${rider.name} en action</h2>
+          </div>
+          <div class="rp-gallery__arrows team-arrows">
+            <button class="cat-arrow" type="button" data-gscroll="-1" aria-label="Photos précédentes">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <button class="cat-arrow" type="button" data-gscroll="1" aria-label="Photos suivantes">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+        </header>
+      </div>
+      <div class="rp-gallery__strip" id="rp-gallery-strip" role="list">
+        ${shots.map((src, i) => `
+          <button type="button" class="rp-gallery__item" data-i="${i}" style="--i:${i}" role="listitem" aria-label="Agrandir la photo ${i + 1} sur ${shots.length}">
+            <img src="${src}" alt="FIVE ${product.name} porté par ${rider.name}" loading="lazy" referrerpolicy="no-referrer" />
+            <span class="rp-gallery__expand" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+            </span>
+          </button>`).join('')}
+      </div>`;
+
+    /* ----- Lightbox (visionneuse plein écran, partagée par toutes les photos) ----- */
+    const lb = document.createElement('div');
+    lb.className = 'lightbox';
+    lb.setAttribute('aria-hidden', 'true');
+    lb.innerHTML = `
+      <div class="lightbox__backdrop" data-lb-close></div>
+      <button class="lightbox__ctrl lightbox__close" type="button" data-lb-close aria-label="Fermer">
+        <svg viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+      </button>
+      <button class="lightbox__ctrl lightbox__nav lightbox__nav--prev" type="button" data-lb-nav="-1" aria-label="Photo précédente">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <figure class="lightbox__stage" role="dialog" aria-modal="true" aria-label="Photo agrandie">
+        <img class="lightbox__img" alt="" referrerpolicy="no-referrer" />
+      </figure>
+      <button class="lightbox__ctrl lightbox__nav lightbox__nav--next" type="button" data-lb-nav="1" aria-label="Photo suivante">
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+      <span class="lightbox__count" aria-hidden="true"></span>`;
+    document.body.appendChild(lb);
+
+    const lbImg = $('.lightbox__img', lb);
+    const lbCount = $('.lightbox__count', lb);
+    let lbIndex = 0;
+
+    function showLightbox(i) {
+      lbIndex = (i + shots.length) % shots.length;
+      lbImg.classList.add('is-loading');
+      const next = new Image();
+      next.referrerPolicy = 'no-referrer';
+      next.onload = () => { lbImg.src = shots[lbIndex]; lbImg.classList.remove('is-loading'); };
+      next.src = shots[lbIndex];
+      lbImg.alt = `FIVE ${product.name} porté par ${rider.name} — photo ${lbIndex + 1}`;
+      lbCount.textContent = `${lbIndex + 1} / ${shots.length}`;
+    }
+    function openLightbox(i) {
+      showLightbox(i);
+      lb.classList.add('is-open');
+      lb.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      lb.classList.remove('is-open');
+      lb.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+    if (shots.length < 2) $$('.lightbox__nav', lb).forEach(b => { b.hidden = true; });
+
+    lb.addEventListener('click', e => {
+      if (e.target.closest('[data-lb-close]')) { closeLightbox(); return; }
+      const nav = e.target.closest('[data-lb-nav]');
+      if (nav) showLightbox(lbIndex + parseInt(nav.dataset.lbNav, 10));
+    });
+    document.addEventListener('keydown', e => {
+      if (!lb.classList.contains('is-open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      else if (e.key === 'ArrowLeft') showLightbox(lbIndex - 1);
+      else if (e.key === 'ArrowRight') showLightbox(lbIndex + 1);
+    });
+
+    /* ----- Bande : ouverture au clic + flèches de défilement ----- */
+    const strip = $('#rp-gallery-strip', galleryEl);
+    strip.addEventListener('click', e => {
+      const item = e.target.closest('.rp-gallery__item');
+      if (item) openLightbox(parseInt(item.dataset.i, 10));
+    });
+    const stepW = () => {
+      const first = strip.querySelector('.rp-gallery__item');
+      const gap = parseFloat(getComputedStyle(strip).columnGap || getComputedStyle(strip).gap) || 20;
+      return first ? first.getBoundingClientRect().width + gap : strip.clientWidth * 0.8;
+    };
+    $$('.rp-gallery__arrows [data-gscroll]', galleryEl).forEach(btn => {
+      btn.addEventListener('click', () => strip.scrollBy({ left: parseInt(btn.dataset.gscroll, 10) * stepW(), behavior: 'smooth' }));
+    });
+
+    /* ----- Révélation décalée quand la bande entre à l'écran ----- */
+    const items = $$('.rp-gallery__item', strip);
+    if ('IntersectionObserver' in window) {
+      const so = new IntersectionObserver((entries, obs) => {
+        entries.forEach(e => { if (e.isIntersecting) { items.forEach(el => el.classList.add('is-in')); obs.disconnect(); } });
+      }, { threshold: 0.08 });
+      so.observe(strip);
+    } else {
+      items.forEach(el => el.classList.add('is-in'));
+    }
+  } else {
+    galleryEl.hidden = true;
+  }
+
   /* ---------- Réseaux ---------- */
   const socials = [];
   if (rider.instagram && rider.instagram !== '#') socials.push({ label: 'Instagram', href: rider.instagram, icon: '<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/>' });
@@ -158,6 +280,17 @@
       </div>
     </article>`).join('');
   $$('.tpg-card', $('#rp-others-grid')).forEach(el => el.classList.add('is-in'));
+
+  /* ---------- Révélation au scroll (titres .reveal) ---------- */
+  const revealables = $$('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); obs.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    revealables.forEach(el => io.observe(el));
+  } else {
+    revealables.forEach(el => el.classList.add('is-in'));
+  }
 
   window.scrollTo(0, 0);
 })();
