@@ -132,7 +132,6 @@
         <header class="section-head section-head--row rp-gallery__head reveal">
           <div>
             <p class="overline">En images</p>
-            <h2 class="section-title section-title--light">${rider.name} en action</h2>
           </div>
           <div class="rp-gallery__arrows team-arrows">
             <button class="cat-arrow" type="button" data-gscroll="-1" aria-label="Photos précédentes">
