@@ -8,6 +8,8 @@
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
   const U = 'https://five-gloves.com/wp-content/uploads/';
   const cat = s => `categorie.html?cat=${s}`;
+  const gloss = q => `glossaire.html?q=${encodeURIComponent(q)}`;
+  const glossCat = c => `glossaire.html?cat=${c}`;
   const L = (label, href, img) => ({ label, href: href || '#', img: img || null });
 
   const IMG = {
@@ -68,14 +70,22 @@
       ]
     },
     techno: {
-      preview: { img: IMG.drytech, tag: 'Technologie', label: 'Membrane 5_DryTech™', href: '#' },
+      preview: { img: IMG.drytech, tag: 'Documentation', label: 'Le glossaire technique', href: 'glossaire.html' },
       groups: [
         { title: 'Glossaire technique', wide: true, items: [
-          L('Protection KEVLAR®', '#', IMG.drytech), L('Protection D3O®', '#', IMG.drytech),
-          L('Membrane GORE-TEX®', '#', IMG.goretex), L('Isolation Primaloft®', '#', IMG.veloWinter),
-          L('Thermo+ Concept', '#', IMG.winter), L('Membrane 5_DryTech™', '#', IMG.drytech),
-          L('Isolation 5_WarmTech™', '#', IMG.veloWp), L('Gants Chauffants FIVE HG', '#', IMG.heat),
-          L('FIVE Stunt Evo2', '#', IMG.rsx)
+          L('Tout le glossaire', 'glossaire.html', IMG.drytech),
+          L('Protection KEVLAR®', gloss('kevlar'), IMG.drytech), L('Protection D3O®', gloss('d3o'), IMG.drytech),
+          L('Membrane GORE-TEX®', gloss('gore-tex'), IMG.goretex), L('Isolation Primaloft®', gloss('primaloft'), IMG.veloWinter),
+          L('Thermo+ Concept', gloss('thermo'), IMG.winter), L('Membrane 5_DryTech™', gloss('drytech'), IMG.drytech),
+          L('Isolation 5_WarmTech™', gloss('warmtech'), IMG.veloWp), L('Gants Chauffants FIVE HG', gloss('heating'), IMG.heat)
+        ] },
+        { title: 'Par famille', items: [
+          L('Membranes & étanchéité', glossCat('membrane'), IMG.goretex),
+          L('Isolation & chaleur', glossCat('chaud'), IMG.winter),
+          L('Protection', glossCat('protec'), IMG.racing),
+          L('Matières', glossCat('matiere'), IMG.custom),
+          L('Confort & ergonomie', glossCat('confort'), IMG.rsx),
+          L('Innovations FIVE', glossCat('five'), IMG.drytech)
         ] }
       ]
     },

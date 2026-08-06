@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Glossaire technique FIVE : toutes les matières, membranes, protections et technologies qui composent un gant moto et vélo FIVE." />
+  <title>FIVE — Glossaire technique</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body class="page-gloss">
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header is-solid" id="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo" aria-label="FIVE accueil"><img src="assets/svg/five-logo_white.svg" alt="FIVE" height="22" /></a>
+      <nav class="nav" id="primary-nav" aria-label="Navigation principale">
+        <ul class="nav__list">
+          <li><a href="index.html#terrain">Gants moto</a></li>
+          <li><a href="index.html#terrain">Gants vélo</a></li>
+          <li><a href="index.html#nouveautes">Accessoires</a></li>
+          <li><a href="index.html#techno">Technologies</a></li>
+          <li><a href="#">Revendeurs</a></li>
+          <li><a href="#">Guide</a></li>
+        </ul>
+      </nav>
+      <div class="header__actions">
+        <button class="icon-btn" aria-label="Rechercher" data-action="search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg>
+        </button>
+        <button class="icon-btn" aria-label="Mon compte">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+        </button>
+        <button class="icon-btn icon-btn--cart" aria-label="Panier" data-action="cart">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+          <span class="cart-count" id="cart-count">0</span>
+        </button>
+        <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ HÉRO ============ -->
+    <section class="cat-hero gl-hero">
+      <img class="cat-hero__bg" src="https://five-gloves.com/wp-content/uploads/2025/09/FIVE-MOTO-RACING-PERFORMANCE-rfx2-evo-black-white-focus02.jpg" alt="" referrerpolicy="no-referrer" />
+      <div class="cat-hero__overlay" aria-hidden="true"></div>
+      <div class="container cat-hero__inner">
+        <nav class="breadcrumb breadcrumb--light" aria-label="Fil d'ariane">
+          <a href="index.html">Accueil</a><span>/</span>
+          <a href="index.html#techno">Technologies</a><span>/</span>
+          <span aria-current="page">Glossaire</span>
+        </nav>
+        <p class="overline">Documentation technique</p>
+        <h1 class="cat-hero__title">Glossaire technique</h1>
+        <p class="cat-hero__desc">Toutes les matières, membranes et technologies qui composent un gant FIVE. Cherchez un terme, ou filtrez par famille.</p>
+        <p class="gl-hero__meta"><span><strong id="gl-total">0</strong> termes</span><span><strong>7</strong> familles</span><span>Mis à jour <strong>2026</strong></span></p>
+      </div>
+    </section>
+
+    <!-- ============ GLOSSAIRE ============ -->
+    <section class="gl-body">
+      <div class="container">
+
+        <!-- barre de recherche + filtres -->
+        <div class="gl-bar" id="gl-bar">
+          <div class="gl-search">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5 21 21"/></svg>
+            <input type="search" id="gl-input" placeholder="Chercher un terme, une matière…" autocomplete="off" aria-label="Chercher un terme" />
+            <button type="button" id="gl-clear" aria-label="Effacer la recherche" hidden>&times;</button>
+          </div>
+
+          <div class="filters gl-filters" role="group" aria-label="Filtrer par famille">
+            <button class="filter is-active" data-cat="all">Tout</button>
+            <button class="filter" data-cat="membrane">Membranes &amp; étanchéité</button>
+            <button class="filter" data-cat="chaud">Isolation &amp; chaleur</button>
+            <button class="filter" data-cat="protec">Protection</button>
+            <button class="filter" data-cat="matiere">Matières</button>
+            <button class="filter" data-cat="confort">Confort &amp; ergonomie</button>
+            <button class="filter" data-cat="anat">Anatomie</button>
+            <button class="filter filter--five" data-cat="five">Innovations FIVE</button>
+          </div>
+
+          <p class="gl-count"><span id="gl-n">0</span> termes affichés</p>
+        </div>
+
+        <!-- grille -->
+        <div class="gl-grid" id="gl-grid">
+
+          <!-- ===== MEMBRANES ===== -->
+          <article class="gl-card" data-cat="membrane five" data-term="5_DryTech">
+            <span class="gl-ref">MEM</span>
+            <h2>5_DryTech™ <b class="gl-chip">Five</b></h2>
+            <p>Membrane étanche, respirante et coupe-vent développée par FIVE pour le 2-roues. Laisse évaporer la transpiration, bloque la pluie. Fixée par bandes adhésives pour rester en place.</p>
+            <a class="gl-more" href="index.html#techno">La technologie</a>
+          </article>
+
+          <article class="gl-card" data-cat="membrane" data-term="GORE-TEX">
+            <span class="gl-ref">MEM</span>
+            <h2>GORE-TEX®</h2>
+            <p>La membrane étanche-respirante de référence, avec la Garantie de vous maintenir au sec™.</p>
+            <ul class="gl-sub">
+              <li><b>GRIP Fully bonded</b> — totalement solidaire de la paume : tactilité maximale.</li>
+              <li><b>GRIP Partially bonded</b> — partiellement solidaire : meilleur maintien en place.</li>
+            </ul>
+            <a class="gl-more" href="index.html#techno">La technologie</a>
+          </article>
+
+          <article class="gl-card" data-cat="membrane" data-term="HIPORA">
+            <span class="gl-ref">MEM</span>
+            <h2>HIPORA®</h2>
+            <p>Membrane étanche-respirante offrant un excellent compromis imperméabilité / respirabilité.</p>
+          </article>
+
+          <article class="gl-card" data-cat="membrane" data-term="WP Weatherproof">
+            <span class="gl-ref">MEM</span>
+            <h2>WP</h2>
+            <p><i>Weatherproof.</i> Gant équipé d'une membrane étanche et respirante : les mains restent sèches sous la pluie.</p>
+          </article>
+
+          <article class="gl-card" data-cat="membrane matiere" data-term="Tissu déperlant">
+            <span class="gl-ref">MEM</span>
+            <h2>Tissu déperlant</h2>
+            <p>Tissu sur lequel les gouttes glissent au lieu de pénétrer. Retarde l'imprégnation, sans être imperméable.</p>
+          </article>
+
+          <!-- ===== ISOLATION ===== -->
+          <article class="gl-card" data-cat="chaud five" data-term="5_WarmTech">
+            <span class="gl-ref">ISO</span>
+            <h2>5_WarmTech™ <b class="gl-chip">Five</b></h2>
+            <p>Fibre polyester 3D développée par FIVE, placée entre la membrane et la doublure. Elle emprisonne l'air — le meilleur des isolants — et la chaleur de la main. Densités variables selon les zones du gant.</p>
+            <a class="gl-more" href="index.html#techno">La technologie</a>
+          </article>
+
+          <article class="gl-card" data-cat="chaud" data-term="Primaloft">
+            <span class="gl-ref">ISO</span>
+            <h2>Primaloft®</h2>
+            <p>Isolant microfibre synthétique breveté, créé en 1983 pour l'armée américaine comme alternative au duvet d'oie. Chaud, léger, déperlant — et efficace même humide.</p>
+            <a class="gl-more" href="index.html#techno">La technologie</a>
+          </article>
+
+          <article class="gl-card" data-cat="chaud five" data-term="Thermo+ Concept Max">
+            <span class="gl-ref">ISO</span>
+            <h2>Thermo+ <b class="gl-chip">Five</b></h2>
+            <p>Doublure thermique surépaissie aux entre-doigts : jusqu'à 20&nbsp;% d'isolation en plus qu'une construction classique. Le gant paraît moins souple à l'essayage, mais tient nettement mieux le froid en roulant.</p>
+            <ul class="gl-sub">
+              <li><b>Thermo+ Max</b> — ouate isolante supplémentaire sur toute la longueur des doigts, côté paume.</li>
+            </ul>
+            <a class="gl-more" href="index.html#techno">La technologie</a>
+          </article>
+
+          <article class="gl-card" data-cat="chaud five" data-term="HG Heating Technology gant chauffant">
+            <span class="gl-ref">ISO</span>
+            <h2>HG — Heating Technology <b class="gl-chip">Five</b></h2>
+            <p>Gant chauffant par résistances, alimenté par batterie autonome ou câble allume-cigare. Niveau de chauffe réglable, au choix pour la température ressentie ou pour l'autonomie.</p>
+            <a class="gl-more" href="index.html#techno">La technologie</a>
+          </article>
+
+          <article class="gl-card" data-cat="chaud five" data-term="Dual Control">
+            <span class="gl-ref">ISO</span>
+            <h2>Dual Control <b class="gl-chip">Five</b></h2>
+            <p>Un seul bouton, sur la main droite, pilote la chauffe des deux gants — reliés entre eux sans fil. Dernière génération FIVE HG.</p>
+          </article>
+
+          <article class="gl-card" data-cat="chaud" data-term="Connection Kit">
+            <span class="gl-ref">ISO</span>
+            <h2>Connection Kit</h2>
+            <p>Kit optionnel de câbles pour relier les gants chauffants FIVE HG à la batterie ou à la prise allume-cigare de la moto.</p>
+          </article>
+
+          <!-- ===== PROTECTION ===== -->
+          <article class="gl-card" data-cat="protec five" data-term="AirGO PROTECH">
+            <span class="gl-ref">PRO</span>
+            <h2>AirGO PROTECH® <b class="gl-chip">Five</b></h2>
+            <p>Coque de protection des métacarpes au design déposé, avec entrée d'air intégrée pour ventiler la main.</p>
+          </article>
+
+          <article class="gl-card" data-cat="protec five" data-term="ERGO PROTECH">
+            <span class="gl-ref">PRO</span>
+            <h2>ERGO PROTECH® <b class="gl-chip">Five</b></h2>
+            <p>Coque au design déposé, visible ou dissimulée sous tissu ou cuir. Version monocoque ou dédoublée ; les monocoques TPR intègrent une structure interne en nids d'abeille pour absorber l'énergie.</p>
+          </article>
+
+          <article class="gl-card" data-cat="protec" data-term="D3O">
+            <span class="gl-ref">PRO</span>
+            <h2>D3O®</h2>
+            <p>Matière non-newtonienne : souple comme de la pâte à modeler au repos, elle durcit instantanément sous l'impact pour absorber et disperser l'énergie, puis redevient souple. Confortable et protectrice à la fois.</p>
+            <ul class="gl-sub">
+              <li><b>D3O® AEROMAX</b> — mousse légère en feuilles, ajoutée sur des zones stratégiques en complément des coques FIVE x D3O®.</li>
+            </ul>
+            <a class="gl-more" href="index.html#techno">La technologie</a>
+          </article>
+
+          <article class="gl-card" data-cat="protec matiere" data-term="KEVLAR stretch">
+            <span class="gl-ref">PRO</span>
+            <h2>KEVLAR®</h2>
+            <p>Fibre aramide extrêmement résistante au déchirement, à la perforation et à l'abrasion — la même famille de matériau que les gilets pare-balles. Existe en version <b>stretch</b>, élastique.</p>
+            <a class="gl-more" href="index.html#techno">La technologie</a>
+          </article>
+
+          <article class="gl-card" data-cat="protec matiere" data-term="SuperFabric">
+            <span class="gl-ref">PRO</span>
+            <h2>SuperFabric®</h2>
+            <p>Base textile recouverte d'innombrables points de résine en relief : une armure contre l'abrasion et les éléments coupants, qui reste étanche et respirante. Réservé aux gants haute performance.</p>
+          </article>
+
+          <article class="gl-card" data-cat="protec" data-term="Carbon PVC slider">
+            <span class="gl-ref">PRO</span>
+            <h2>Carbon PVC</h2>
+            <p>Feuille de carbone prise entre deux couches de PVC : le bon ratio rigidité / flexibilité. Souvent utilisé pour le « slider » de paume, à l'hypothénar.</p>
+          </article>
+
+          <article class="gl-card" data-cat="protec" data-term="Carbon Thermoset">
+            <span class="gl-ref">PRO</span>
+            <h2>Carbon Thermoset</h2>
+            <p>Carbone thermodurcissable cuit en autoclave, made in Italy — le même que l'aéronautique, la F1 et le MotoGP. Sur les coques du RFX Race : ultra-léger, ultra-résistant.</p>
+          </article>
+
+          <article class="gl-card" data-cat="protec five" data-term="Lien anti-torsion">
+            <span class="gl-ref">PRO</span>
+            <h2>Lien anti-torsion <b class="gl-chip">Five</b></h2>
+            <p>Relie l'auriculaire à l'annulaire pour limiter l'écartèlement du petit doigt en cas de chute. En cuir et en forme d'accordéon sur les gants Racing — une innovation FIVE qui bride l'amplitude sans gêner.</p>
+          </article>
+
+          <article class="gl-card" data-cat="protec confort" data-term="VIBRA-LESS">
+            <span class="gl-ref">PRO</span>
+            <h2>VIBRA-LESS™</h2>
+            <p>Coussinets anti-vibrations intégrés dans la paume, pour réduire les vibrations transmises par le guidon.</p>
+          </article>
+
+          <article class="gl-card" data-cat="protec confort" data-term="Mousse à mémoire de forme">
+            <span class="gl-ref">PRO</span>
+            <h2>Mousse à mémoire de forme</h2>
+            <p>Mousse viscoélastique qui reprend sa forme après déformation. Utilisée pour absorber un impact ou comme élément de confort.</p>
+          </article>
+
+          <article class="gl-card" data-cat="protec matiere" data-term="TPR TPU">
+            <span class="gl-ref">PRO</span>
+            <h2>TPR &amp; TPU</h2>
+            <p><b>TPR</b> — caoutchouc thermoplastique, moulable ou extrudable : décoration ou protection.<br /><b>TPU</b> — thermo-polyuréthane thermo-moulé, plus ou moins rigide, utilisé pour certaines coques.</p>
+          </article>
+
+          <!-- ===== MATIÈRES ===== -->
+          <article class="gl-card" data-cat="matiere" data-term="Cuir de chèvre vache">
+            <span class="gl-ref">MAT</span>
+            <h2>Cuirs naturels</h2>
+            <ul class="gl-sub gl-sub--top">
+              <li><b>Chèvre</b> — choisi pour sa souplesse supérieure.</li>
+              <li><b>Vache</b> — choisi pour sa résistance supérieure.</li>
+              <li><b>Pleine fleur</b> — surface intacte, avec les irrégularités naturelles de la peau.</li>
+              <li><b>Nubuck</b> — aspect velouté obtenu par ponçage de la surface.</li>
+            </ul>
+          </article>
+
+          <article class="gl-card" data-cat="matiere five" data-term="Cuir digital">
+            <span class="gl-ref">MAT</span>
+            <h2>Cuir digital</h2>
+            <p>Cuir gravé au laser d'une multitude de micro-empreintes, pour accrocher poignées et leviers même sous la pluie.</p>
+          </article>
+
+          <article class="gl-card" data-cat="matiere" data-term="Cuir synthétique vegan">
+            <span class="gl-ref">MAT</span>
+            <h2>Cuir synthétique &amp; Vegan Friendly</h2>
+            <p>Matériau sans aucun composant d'origine animale, principalement en paume pour son élasticité, sa résistance et son confort. Un gant <b>Vegan Friendly</b> n'en contient aucun, sur aucune de ses parties.</p>
+          </article>
+
+          <article class="gl-card" data-cat="matiere" data-term="AX Suede">
+            <span class="gl-ref">MAT</span>
+            <h2>AX® Suede</h2>
+            <p>Microfibres de polyester imitant le cuir suédé, lavables en machine. Gagne en dextérité, souplesse, résistance à l'abrasion et gestion de l'humidité.</p>
+          </article>
+
+          <article class="gl-card" data-cat="matiere" data-term="Clarino">
+            <span class="gl-ref">MAT</span>
+            <h2>Clarino®</h2>
+            <p>Synthétique imitant le cuir suédé, utilisé en paume pour le confort, la résistance à l'abrasion et l'accroche aux poignées. Lavable en machine.</p>
+          </article>
+
+          <article class="gl-card" data-cat="matiere" data-term="SYNTECH SKIN">
+            <span class="gl-ref">MAT</span>
+            <h2>Syntech Skin™</h2>
+            <p>Synthétique à l'aspect du cuir naturel, mais plus résistant à la déchirure et à la coupure.</p>
+          </article>
+
+          <article class="gl-card" data-cat="matiere" data-term="Nanofront">
+            <span class="gl-ref">MAT</span>
+            <h2>Nanofront®</h2>
+            <p>Fibres de 700 nanomètres de diamètre, venues du Japon. Introduit par FIVE en paume des gants motocross haut de gamme : antidérapant, fin, souple, absorbant, isolant.</p>
+          </article>
+
+          <article class="gl-card" data-cat="matiere" data-term="Cordura Stretch">
+            <span class="gl-ref">MAT</span>
+            <h2>Cordura® Stretch</h2>
+            <p>Tissu très résistant, doté de propriétés d'élasticité dans sa version Stretch.</p>
+          </article>
+
+          <article class="gl-card" data-cat="matiere" data-term="Lycra Spandex 4-Way">
+            <span class="gl-ref">MAT</span>
+            <h2>Lycra® &amp; Spandex™</h2>
+            <p>Fibres synthétiques élastiques. Le <b>Lycra®</b> intervient là où il faut de la souplesse pure : contour des doigts, entrée du poignet. Le <b>Spandex™</b>, dérivé du Lycra®, cible une zone précise ; sa version <b>4-Way</b> s'étire dans les quatre sens pour assouplir tout le gant.</p>
+          </article>
+
+          <article class="gl-card" data-cat="matiere" data-term="One Way Stretch fourchettes">
+            <span class="gl-ref">MAT</span>
+            <h2>One Way Stretch™</h2>
+            <p>Matériau extensible inséré aux fourchettes, entre les doigts, pour une flexibilité optimale.</p>
+          </article>
+
+          <article class="gl-card" data-cat="matiere" data-term="Airprene">
+            <span class="gl-ref">MAT</span>
+            <h2>Airprene®</h2>
+            <p>Mousse polymère extra-élastique, micro-cellulaire et perforée : elle maintient tout en laissant passer air et humidité. Souvent au poignet.</p>
+          </article>
+
+          <article class="gl-card" data-cat="matiere" data-term="Bemberg">
+            <span class="gl-ref">MAT</span>
+            <h2>Bemberg™ / Micro Bemberg™</h2>
+            <p>Fibre artificielle issue de cellulose végétale, au toucher soyeux. Utilisée en doublure pour une surface de contact agréable.</p>
+          </article>
+
+          <article class="gl-card" data-cat="matiere" data-term="Cat Eye">
+            <span class="gl-ref">MAT</span>
+            <h2>Cat Eye™</h2>
+            <p>Tissu polyester dont la surface supérieure est structurée.</p>
+          </article>
+
+          <article class="gl-card" data-cat="matiere confort" data-term="Tissu Mesh 3D">
+            <span class="gl-ref">MAT</span>
+            <h2>Tissu Mesh</h2>
+            <p>Tissu alvéolé qui favorise la circulation de l'air. En version <b>3D</b>, les alvéoles ont une texture en volume.</p>
+          </article>
+
+          <article class="gl-card" data-cat="matiere" data-term="PU PVC polyuréthane">
+            <span class="gl-ref">MAT</span>
+            <h2>PU &amp; PVC</h2>
+            <p><b>PU</b> — polyuréthane, plastique souple.<br /><b>PVC</b> — polychlorure de vinyle, plastique très stable, rigide ou souple.</p>
+          </article>
+
+          <!-- ===== CONFORT & ERGONOMIE ===== -->
+          <article class="gl-card" data-cat="confort" data-term="PU GRIP">
+            <span class="gl-ref">ERG</span>
+            <h2>PU Grip</h2>
+            <p>Empiècement de polyuréthane à points en creux et en relief, pour accrocher les poignées en conditions humides.</p>
+          </article>
+
+          <article class="gl-card" data-cat="confort" data-term="Renfort palmaire">
+            <span class="gl-ref">ERG</span>
+            <h2>Renfort palmaire</h2>
+            <p>Pièce de cuir, tissu ou PU Grip en paume : plus de confort, plus d'accroche, plus de résistance aux frottements.</p>
+          </article>
+
+          <article class="gl-card" data-cat="confort five" data-term="Pull'N'Ride">
+            <span class="gl-ref">ERG</span>
+            <h2>Pull'N'Ride™ <b class="gl-chip">Five</b></h2>
+            <p>Languette de préhension qui facilite l'enfilage du gant.</p>
+          </article>
+
+          <article class="gl-card" data-cat="confort five" data-term="V-Entrance">
+            <span class="gl-ref">ERG</span>
+            <h2>V-Entrance™ <b class="gl-chip">Five</b></h2>
+            <p>Assemblage spécifique du poignet, développé par FIVE pour enfiler le gant plus facilement.</p>
+          </article>
+
+          <article class="gl-card" data-cat="confort" data-term="Over Size Cuff manchette">
+            <span class="gl-ref">ERG</span>
+            <h2>Over Size Cuff</h2>
+            <p>Zip d'élargissement de la manchette, pour la passer facilement par-dessus la manche de la veste.</p>
+          </article>
+
+          <article class="gl-card" data-cat="confort five" data-term="Touch Screen tactile">
+            <span class="gl-ref">ERG</span>
+            <h2>Touch Screen™ <b class="gl-chip">Five</b></h2>
+            <p>Zones conductrices permettant d'utiliser un écran tactile sans retirer le gant. Sur l'index, ou index et pouce selon les modèles.</p>
+          </article>
+
+          <article class="gl-card" data-cat="confort five" data-term="Clear Vision Pad">
+            <span class="gl-ref">ERG</span>
+            <h2>Clear Vision Pad™ <b class="gl-chip">Five</b></h2>
+            <p>Empiècement micro-éponge pour essuyer la visière du casque ou le masque en roulant.</p>
+          </article>
+
+          <article class="gl-card" data-cat="confort" data-term="Reflective rétro-réfléchissant">
+            <span class="gl-ref">ERG</span>
+            <h2>Reflective</h2>
+            <p>Éléments rétro-réfléchissants qui renvoient la lumière des phares : le pilote reste visible de nuit.</p>
+          </article>
+
+          <article class="gl-card" data-cat="confort" data-term="Velcro scratch">
+            <span class="gl-ref">ERG</span>
+            <h2>Velcro</h2>
+            <p>Fermeture contact à crochets et boucles textiles, communément appelée scratch.</p>
+          </article>
+
+          <article class="gl-card" data-cat="confort matiere" data-term="GUTTERMANN fil couture">
+            <span class="gl-ref">ERG</span>
+            <h2>Gütermann®</h2>
+            <p>Fil de couture allemand utilisé sur les gants haute performance, pour sa résistance au déchirement et pour limiter les risques de coupure en cas d'accident.</p>
+          </article>
+
+          <article class="gl-card" data-cat="confort" data-term="Embossé">
+            <span class="gl-ref">ERG</span>
+            <h2>Embossé</h2>
+            <p>Effet de relief mettant en valeur un ornement — logo ou autre.</p>
+          </article>
+
+          <!-- ===== ANATOMIE ===== -->
+          <article class="gl-card gl-card--anat" data-cat="anat" data-term="Métacarpes">
+            <span class="gl-ref">ANA</span>
+            <h2>Métacarpes</h2>
+            <p>Les os du squelette de la paume, entre les doigts et le poignet.</p>
+          </article>
+
+          <article class="gl-card gl-card--anat" data-cat="anat" data-term="Thénar">
+            <span class="gl-ref">ANA</span>
+            <h2>Thénar</h2>
+            <p>La saillie musculaire arrondie sous le pouce.</p>
+          </article>
+
+          <article class="gl-card gl-card--anat" data-cat="anat" data-term="Hypothénar">
+            <span class="gl-ref">ANA</span>
+            <h2>Hypothénar</h2>
+            <p>La zone opposée, côté auriculaire : le groupe musculaire qui commande le petit doigt. C'est là que se place le slider de paume.</p>
+          </article>
+
+        </div>
+
+        <p class="gl-empty" id="gl-empty" hidden>Aucun terme ne correspond. Essayez « gore », « cuir » ou « chauffant ».</p>
+      </div>
+    </section>
+
+    <!-- ============ CTA FINAL ============ -->
+    <section class="gl-outro">
+      <img class="gl-outro__bg" src="https://five-gloves.com/wp-content/uploads/2025/09/CARRASCO-ACTION.jpg" alt="" loading="lazy" />
+      <div class="gl-outro__veil" aria-hidden="true"></div>
+      <div class="container gl-outro__inner">
+        <p class="overline">Passer à la pratique</p>
+        <h2 class="gl-outro__title">Ces technologies,<br />dans un gant.</h2>
+        <p class="gl-outro__lead">Membranes, coques et cuirs sélectionnés : voyez comment tout ça s'assemble sur les quatre nouveautés moto 2026.</p>
+        <div class="gl-outro__cta">
+          <a href="nouveautes-2026.html" class="btn btn--red">Zoom sur les gants 2026 <span class="arrow">→</span></a>
+          <a href="categorie.html?cat=moto" class="btn btn--ghost">Toute la collection <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <span class="footer__watermark" aria-hidden="true">FIVE</span>
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="logo"><img src="assets/svg/five-logo_white.svg" alt="FIVE" height="22" /></a>
+        <p>Le spécialiste du gant moto et vélo. Your future is in your hands.</p>
+        <div class="socials">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8a1 1 0 0 1 1-1z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3V9z"/></svg></a>
+          <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M14 3v9a3 3 0 1 1-3-3M14 3c0 3 2 5 5 5"/></svg></a>
+        </div>
+      </div>
+      <nav class="footer__col" aria-label="Boutique">
+        <h4>Boutique</h4>
+        <ul><li><a href="index.html#nouveautes">Gants moto</a></li><li><a href="index.html#nouveautes">Gants vélo</a></li><li><a href="index.html#nouveautes">Accessoires</a></li><li><a href="nouveautes-2026.html">Nouveautés</a></li></ul>
+      </nav>
+      <nav class="footer__col" aria-label="Aide">
+        <h4>Aide</h4>
+        <ul><li><a href="#" data-action="sizeguide">Guide des tailles</a></li><li><a href="#">Livraison &amp; retours</a></li><li><a href="#">Suivi de commande</a></li><li><a href="#">Contact</a></li></ul>
+      </nav>
+      <nav class="footer__col" aria-label="Maison Five">
+        <h4>Maison Five</h4>
+        <ul><li><a href="index.html#techno">Technologies</a></li><li><a href="glossaire.html">Glossaire technique</a></li><li><a href="team.html">Nos pilotes</a></li><li><a href="#">Revendeurs</a></li><li><a href="#">CGV</a></li></ul>
+      </nav>
+    </div>
+    <div class="container footer__bottom">
+      <p>© 2026 FIVE Gloves — Tous droits réservés.</p>
+      <p class="footer__pay">Paiement sécurisé · Visa · Mastercard · PayPal · Apple Pay</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/wishlist.js"></script>
+  <script src="assets/js/search.js"></script>
+  <script src="assets/js/sizeguide.js"></script>
+  <script src="assets/js/nav.js"></script>
+  <script src="assets/js/glossaire.js"></script>
+</body>
+</html>
